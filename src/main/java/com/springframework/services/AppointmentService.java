@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.springframework.domain.Appointment;
 import com.springframework.domain.User;
+import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.UserReqDTO;
+import com.springframework.enums.AppointmentStatusEnum;
 import com.springframework.repositories.AppointmentRepository;
 import com.springframework.repositories.UserRepository;
 
@@ -25,6 +27,17 @@ public class AppointmentService {
 	public Optional<Appointment> getAppointmentById(Long id) 
 	{      
         return appointmentRepository.findById(id);
+	}
+	
+	public Appointment saveAppointment(AppointmentReqDTO appointmentReqDTO) 
+	{
+		// TODO Auto-generated method stub
+		Appointment appointment = Appointment.builder()
+	                .description(appointmentReqDTO.getDescription())
+	                .patientId(appointmentReqDTO.getPatientId())
+	                .status(AppointmentStatusEnum.PENDING)
+	                .build();
+        return appointmentRepository.save(appointment);
 	}
 	
 

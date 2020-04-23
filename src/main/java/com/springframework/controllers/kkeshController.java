@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springframework.domain.Appointment;
 import com.springframework.domain.User;
+import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.KKeshReqObjectDTO;
 import com.springframework.dto.UserReqDTO;
 import com.springframework.services.AppointmentService;
@@ -63,8 +64,13 @@ public class kkeshController{
 				return new ResponseEntity<>(appointment, HttpStatus.NOT_FOUND);
     }
 	
+	@PostMapping(value = "saveappointment", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Appointment>  saveAppointment(@RequestBody AppointmentReqDTO appointmentReqDTO){
+        return new ResponseEntity<>(this.appointmentService.saveAppointment(appointmentReqDTO), HttpStatus.OK);
+    }
 	
-	@RequestMapping("/kkesh")
+	
+	@RequestMapping("/mainscreen")
     public ModelAndView mainPage(ModelMap model)
     {
 		model.addAttribute("start", "1");
@@ -89,6 +95,5 @@ public class kkeshController{
     	model.addAttribute("attribute", "redirectWithRedirectPrefix");
     	return new ModelAndView("/html/kkeshLogin", model);
     }  
-    
     
 }
