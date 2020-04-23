@@ -31,7 +31,7 @@ public class UserService {
 	                .fileNbr(userReqDTO.getFileNbr())
 	                .emailAddress(userReqDTO.getEmailAddress())
 	                .password(userReqDTO.getPassword())
-	                .ikamaNbr(userReqDTO.getIkamaNbr())
+	                .nationalNbr(userReqDTO.getNationalNbr())
 	                .build();
         
         return userRepository.save(user);

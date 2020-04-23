@@ -29,6 +29,6 @@ public class User
 	public String fileNbr;
 	public String telNumber;
 	public String password;
-	public String ikamaNbr;
+	public String nationalNbr;
 	public String age;
 }
