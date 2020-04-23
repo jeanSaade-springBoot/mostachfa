@@ -175,13 +175,6 @@ $(document).ready(function() {
 
 
 
-//------- Mailchimp js --------//  
-function mailChimp() {
-  $('#mc_embed_signup').find('form').ajaxChimp();
-}
-mailChimp();
-
-
 
         // Search Toggle
         $("#search_input_box").hide();
