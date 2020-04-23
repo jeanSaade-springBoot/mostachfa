@@ -29,18 +29,13 @@ import com.springframework.dto.KKeshReqObjectDTO;
 import com.springframework.dto.UserReqDTO;
 import com.springframework.services.UserService;
 
-@Controller
+@RestController
 @RequestMapping(value = "kkeshuser")
-@EnableWebMvc
-public class kkeshController extends WebMvcConfigurerAdapter{
+public class kkeshController{
 	
 	@Autowired
 	private final UserService userService;
 	
-	@Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/html/kkeshlogin").setViewName("/kkeshuser/redirect");
-    }
 	
 	
 	public kkeshController(UserService userService)
@@ -73,13 +68,13 @@ public class kkeshController extends WebMvcConfigurerAdapter{
       	return new ModelAndView("/html/kkeshLogin", model);
     }
 
-	/*
+	
     @RequestMapping("/redirect")
     public ModelAndView  targetScreen(ModelMap model)
     {
     	model.addAttribute("attribute", "redirectWithRedirectPrefix");
     	return new ModelAndView("/html/kkeshLogin", model);
     }  
-    */
+    
     
 }
