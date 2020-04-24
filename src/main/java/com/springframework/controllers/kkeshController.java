@@ -1,5 +1,6 @@
 package com.springframework.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springframework.domain.Appointment;
 import com.springframework.domain.AppointmentTrack;
+import com.springframework.domain.Doctor;
 import com.springframework.domain.User;
 import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.AppointmentTrackReqDTO;
+import com.springframework.dto.DoctorReqDTO;
 import com.springframework.dto.KKeshReqObjectDTO;
 import com.springframework.dto.UserReqDTO;
 import com.springframework.exceptions.SystemException;
 import com.springframework.services.AppointmentService;
 import com.springframework.services.AppointmentTrackService;
+import com.springframework.services.DoctorService;
 import com.springframework.services.UserService;
+import com.springframework.enums.RedirectPagesEnum;
 
 @RestController
 @RequestMapping(value = "kkesh")
@@ -39,13 +44,17 @@ public class kkeshController{
 	private final AppointmentService appointmentService;
 	@Autowired
 	private final AppointmentTrackService appointmentTrackService;
+	@Autowired
+	private final DoctorService doctorService;
 
 	public kkeshController(UserService userService,
 			AppointmentService appointmentService,
-			AppointmentTrackService appointmentTrackService) {
-		this.userService = userService;
-		this.appointmentService = appointmentService;
+			AppointmentTrackService appointmentTrackService,
+			DoctorService doctorService) {
+		this.userService             = userService;
+		this.appointmentService      = appointmentService;
 		this.appointmentTrackService = appointmentTrackService;
+		this.doctorService           = doctorService;
 	}
 	
 	@PostMapping(value = "saveuser", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -76,6 +85,20 @@ public class kkeshController{
         return new ResponseEntity<>(this.appointmentService.saveAppointment(appointmentReqDTO), HttpStatus.OK);
     }
 	
+	@PostMapping(value = "savedoctor", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Doctor>  saveDoctor(@RequestBody DoctorReqDTO doctorReqDTO){
+        return new ResponseEntity<>(this.doctorService.saveDoctor(doctorReqDTO), HttpStatus.OK);
+    }
+	
+	@GetMapping(value = "getdoctors/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<List<Doctor>>  getDoctors(@PathVariable("name") String name){
+		List<Doctor> doctorsLst = doctorService.getDoctors(name);
+		if(doctorsLst != null)
+        return new ResponseEntity<>(doctorsLst, HttpStatus.OK);
+		else
+				return new ResponseEntity<>(doctorsLst, HttpStatus.NOT_FOUND);
+    }
+	
 	@PostMapping(value = "assignappointment", produces = MediaType.APPLICATION_JSON_VALUE)
 	public  ResponseEntity<AppointmentTrack>  assignAppointment(@RequestBody AppointmentTrackReqDTO appointmentTrackReqDTO){
 		AppointmentTrack appointmentTrack = null;
@@ -90,6 +113,8 @@ public class kkeshController{
 		}
 	}
 	
+	
+	
 	@RequestMapping("/mainscreen")
     public ModelAndView mainPage(ModelMap model)
     {
@@ -99,13 +124,15 @@ public class kkeshController{
 	
 	
 	@RequestMapping(value = "/redirect", method = RequestMethod.POST)
-    public ModelAndView redirectTotarget(@RequestBody KKeshReqObjectDTO kkeshReqObjectDTO,final RedirectAttributes redirectAttributes)
+    public KKeshReqObjectDTO redirectTotarget(@RequestBody KKeshReqObjectDTO kkeshReqObjectDTO,final RedirectAttributes redirectAttributes)
     {
       	String patientId = kkeshReqObjectDTO.getPatientId();
-      	String redirectUrl = kkeshReqObjectDTO.getRedirectUrl().name();
+      	RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(kkeshReqObjectDTO.getRedirectEnum());
+      	String redirectUrl = redirectEnum.label;
+      	
       	ModelMap model = new ModelMap();
       	model.addAttribute("kkeshReqObjectDTO", kkeshReqObjectDTO);
-      	return new ModelAndView("/html/kkeshLogin", model);
+      	return kkeshReqObjectDTO;
     }
 
 	
@@ -113,7 +140,7 @@ public class kkeshController{
     public ModelAndView  targetScreen(ModelMap model)
     {
     	model.addAttribute("attribute", "redirectWithRedirectPrefix");
-    	return new ModelAndView("/html/kkeshLogin", model);
+    	return new ModelAndView("/html/appointmentDetail", model);
     }  
     
 }

@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 @AllArgsConstructor
 @Entity
-@Table(name = "Doctor")
-public class Doctor {
+@Table(name = "Admin")
+public class Admin {
 	
 	@Id
     @GeneratedValue
@@ -30,5 +30,4 @@ public class Doctor {
     private String fName;
 	private String fatherName;
     private String lName;
-    private String doctorIdNumber;
 }
