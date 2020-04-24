@@ -18,5 +18,5 @@ public class KKeshReqObjectDTO {
 	public String adminId;
 	public String patientId;
 	public UserCategoryEnum  userCategory;
-	public RedirectPagesEnum redirectUrl;
+	public String redirectEnum;
 }
