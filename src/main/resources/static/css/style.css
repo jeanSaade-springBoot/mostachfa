@@ -3,6 +3,7 @@
   font-family: "Tajawal";
   src: url(../fonts/Tajawal-Regular.ttf);
 }
+<<<<<<< HEAD
 .grid-title {
     text-align: center;
     font-weight: bolder;
@@ -14,6 +15,8 @@
   background-color: rgba(246, 246, 246, 0.9294117647058824);
 }
 
+=======
+>>>>>>> develop
 label.error {
     color: red;
     font-family: 'Tajawal';
@@ -1258,9 +1261,12 @@ h3 {
 .header-area .main-header-area {
   padding: 2px 0;
   background: #fff;
+<<<<<<< HEAD
   -webkit-box-shadow: -1px 5px 5px 0px rgba(92, 92, 92, 0.75);
  -moz-box-shadow:-1px 5px 5px 0px rgba(92, 92, 92, 0.75);
  box-shadow: -1px 5px 5px 0px rgba(92, 92, 92, 0.75);
+=======
+>>>>>>> develop
 }
 
 /* line 31, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_header.scss */
