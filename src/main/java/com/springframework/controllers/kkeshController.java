@@ -18,11 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springframework.domain.Appointment;
+import com.springframework.domain.AppointmentTrack;
 import com.springframework.domain.User;
 import com.springframework.dto.AppointmentReqDTO;
+import com.springframework.dto.AppointmentTrackReqDTO;
 import com.springframework.dto.KKeshReqObjectDTO;
 import com.springframework.dto.UserReqDTO;
+import com.springframework.exceptions.SystemException;
 import com.springframework.services.AppointmentService;
+import com.springframework.services.AppointmentTrackService;
 import com.springframework.services.UserService;
 
 @RestController
@@ -33,12 +37,15 @@ public class kkeshController{
 	private final UserService userService;
 	@Autowired
 	private final AppointmentService appointmentService;
-	
-	
-	public kkeshController(UserService userService,AppointmentService appointmentService)
-	{
-		this.userService        = userService;
+	@Autowired
+	private final AppointmentTrackService appointmentTrackService;
+
+	public kkeshController(UserService userService,
+			AppointmentService appointmentService,
+			AppointmentTrackService appointmentTrackService) {
+		this.userService = userService;
 		this.appointmentService = appointmentService;
+		this.appointmentTrackService = appointmentTrackService;
 	}
 	
 	@PostMapping(value = "saveuser", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -69,6 +76,19 @@ public class kkeshController{
         return new ResponseEntity<>(this.appointmentService.saveAppointment(appointmentReqDTO), HttpStatus.OK);
     }
 	
+	@PostMapping(value = "assignappointment", produces = MediaType.APPLICATION_JSON_VALUE)
+	public  ResponseEntity<AppointmentTrack>  assignAppointment(@RequestBody AppointmentTrackReqDTO appointmentTrackReqDTO){
+		AppointmentTrack appointmentTrack = null;
+		try {
+			appointmentTrack = this.appointmentTrackService.closeAppointmentTrack(appointmentTrackReqDTO);
+			appointmentTrack = this.appointmentTrackService.saveAppointmentTrack(appointmentTrackReqDTO);
+			return new ResponseEntity<>(
+					appointmentTrack,
+					HttpStatus.OK);
+		} catch (SystemException e) {
+			return new ResponseEntity<>(appointmentTrack, HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	@RequestMapping("/mainscreen")
     public ModelAndView mainPage(ModelMap model)
