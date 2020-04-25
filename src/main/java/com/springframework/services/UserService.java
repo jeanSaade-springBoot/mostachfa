@@ -40,7 +40,7 @@ public class UserService {
 	public User signIn(UserReqDTO userReqDTO) 
 	{
 		// TODO Auto-generated method stub 
-		User user = userRepository.findByEmailAddressAndPassword(userReqDTO.getPassword(), userReqDTO.getEmailAddress());
+		User user = userRepository.findByPasswordAndEmailAddress(userReqDTO.getPassword(), userReqDTO.getEmailAddress());
 		return user;
 	}
 

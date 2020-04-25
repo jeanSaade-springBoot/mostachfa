@@ -35,6 +35,7 @@ import com.springframework.services.DoctorService;
 import com.springframework.services.UserService;
 import com.springframework.enums.RedirectPagesEnum;
 
+import static org.apache.commons.lang.StringUtils.isBlank;
 @RestController
 @RequestMapping(value = "kkesh")
 public class kkeshController{
@@ -57,8 +58,10 @@ public class kkeshController{
 		this.appointmentTrackService = appointmentTrackService;
 		this.doctorService           = doctorService;
 	}
-	
-	@PostMapping(value = "saveuser", produces = MediaType.APPLICATION_JSON_VALUE)
+	/*
+	 *Begin user/patient section
+	 */
+	@PostMapping(value = "registeruser", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<User>  saveUser(@RequestBody UserReqDTO userReqDTO){
         return new ResponseEntity<>(this.userService.saveUser(userReqDTO), HttpStatus.OK);
     }
@@ -71,7 +74,38 @@ public class kkeshController{
 		else
 				return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
     }
+	/*
+	 * end user/patient section
+	 */
 	
+	/*
+	 *Begin Doctor section
+	 */
+	@PostMapping(value = "savedoctor", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Doctor>  saveDoctor(@RequestBody DoctorReqDTO doctorReqDTO){
+        return new ResponseEntity<>(this.doctorService.saveDoctor(doctorReqDTO), HttpStatus.OK);
+    }
+	
+	@GetMapping(value = "getdoctors", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<List<Doctor>>  getDoctors(@RequestParam(name = "name") String name){
+		List<Doctor> doctorsLst;
+		if(isBlank(name))
+			doctorsLst = doctorService.getAllDoctors();
+		else
+			doctorsLst = doctorService.getDoctorsByFNameOrLNameContainingIgnoreCase(name);
+		
+		if(doctorsLst != null)
+			return new ResponseEntity<>(doctorsLst, HttpStatus.OK);
+		else
+			return new ResponseEntity<>(doctorsLst, HttpStatus.NOT_FOUND);
+    }
+	/*
+	 *End Doctor section
+	 */
+	
+	/*
+	 *Begin Appointment section
+	 */
 	@GetMapping(value = "getAppointmentbyid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Optional<Appointment>>  getAppointmentById(@PathVariable("id") long id){
 		Optional<Appointment> appointment = appointmentService.getAppointmentById(id);
@@ -84,20 +118,6 @@ public class kkeshController{
 	@PostMapping(value = "saveappointment", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Appointment>  saveAppointment(@RequestBody AppointmentReqDTO appointmentReqDTO){
         return new ResponseEntity<>(this.appointmentService.saveAppointment(appointmentReqDTO), HttpStatus.OK);
-    }
-	
-	@PostMapping(value = "savedoctor", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Doctor>  saveDoctor(@RequestBody DoctorReqDTO doctorReqDTO){
-        return new ResponseEntity<>(this.doctorService.saveDoctor(doctorReqDTO), HttpStatus.OK);
-    }
-	
-	@GetMapping(value = "getdoctors", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<List<Doctor>>  getDoctors(@RequestParam(name = "name") String name){
-		List<Doctor> doctorsLst = doctorService.getDoctorsByFNameOrLNameContainingIgnoreCase(name);
-		if(doctorsLst != null)
-        return new ResponseEntity<>(doctorsLst, HttpStatus.OK);
-		else
-				return new ResponseEntity<>(doctorsLst, HttpStatus.NOT_FOUND);
     }
 	
 	@PostMapping(value = "assignappointment", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -113,9 +133,13 @@ public class kkeshController{
 			return new ResponseEntity<>(appointmentTrack, HttpStatus.NOT_FOUND);
 		}
 	}
+	/*
+	 *End Appointment section
+	 */
 	
-	
-	
+	/*
+	 *Begin redirection section
+	 */
 	@RequestMapping("/mainscreen")
     public ModelAndView mainPage(ModelMap model)
     {
@@ -143,5 +167,8 @@ public class kkeshController{
     	model.addAttribute("attribute", "redirectWithRedirectPrefix");
     	return new ModelAndView("/html/appointmentDetail", model);
     }  
+    /*
+	 *End Redirection section
+	 */
     
 }
