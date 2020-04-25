@@ -33,6 +33,7 @@ import com.springframework.services.AppointmentService;
 import com.springframework.services.AppointmentTrackService;
 import com.springframework.services.DoctorService;
 import com.springframework.services.UserService;
+import com.springframework.enums.AppointmentStatusEnum;
 import com.springframework.enums.RedirectPagesEnum;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
@@ -106,18 +107,18 @@ public class kkeshController{
 	/*
 	 *Begin Appointment section
 	 */
-	@GetMapping(value = "getAppointmentbyid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Optional<Appointment>>  getAppointmentById(@PathVariable("id") long id){
-		Optional<Appointment> appointment = appointmentService.getAppointmentById(id);
-		if(appointment != null)
-        return new ResponseEntity<>(appointment, HttpStatus.OK);
-		else
-				return new ResponseEntity<>(appointment, HttpStatus.NOT_FOUND);
-    }
 	
 	@PostMapping(value = "saveappointment", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Appointment>  saveAppointment(@RequestBody AppointmentReqDTO appointmentReqDTO){
         return new ResponseEntity<>(this.appointmentService.saveAppointment(appointmentReqDTO), HttpStatus.OK);
+    }
+	
+	@GetMapping(value = "getAppointmentbyid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Optional<Appointment>>  getAppointmentById(@PathVariable("id") long id){
+		Optional<Appointment> appointment = appointmentService.getAppointmentById(id);
+		if(appointment.isPresent())
+			return new ResponseEntity<>(appointment, HttpStatus.OK);
+		return new ResponseEntity<>(appointment, HttpStatus.NOT_FOUND);
     }
 	
 	@PostMapping(value = "assignappointment", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -126,6 +127,8 @@ public class kkeshController{
 		try {
 			appointmentTrack = this.appointmentTrackService.closeAppointmentTrack(appointmentTrackReqDTO);
 			appointmentTrack = this.appointmentTrackService.saveAppointmentTrack(appointmentTrackReqDTO);
+			appointmentService.updateAppointmentStatus(appointmentTrack.getAppointmentId(), AppointmentStatusEnum.PENDING.name());
+			
 			return new ResponseEntity<>(
 					appointmentTrack,
 					HttpStatus.OK);

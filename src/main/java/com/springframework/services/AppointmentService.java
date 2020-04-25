@@ -12,9 +12,11 @@ import com.springframework.domain.User;
 import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.UserReqDTO;
 import com.springframework.enums.AppointmentStatusEnum;
+import com.springframework.enums.RedirectPagesEnum;
 import com.springframework.repositories.AppointmentRepository;
 import com.springframework.repositories.UserRepository;
 
+import com.springframework.enums.AppointmentStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -39,6 +41,13 @@ public class AppointmentService {
 	                .build();
         return appointmentRepository.save(appointment);
 	}
+	
+	public void updateAppointmentStatus(String appointmentId, String status) 
+	{
+        appointmentRepository.updateAppointmentStatus(appointmentId,status);
+	}
+	
+	
 	
 
 }

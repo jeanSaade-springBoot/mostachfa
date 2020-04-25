@@ -16,7 +16,7 @@ public class AppointmentTrackReqDTO {
 	private Long id;
 	private LocalDateTime assignedDate;
 	private LocalDateTime updateDate;
-	private String assignedBy; // User Code who assigned the appointment
+	private String assignedBy; // User Code who assigned the appointment(admin)
 	private String doctorId;
 	private String appointmentId;
 	private Boolean isCurrent;
