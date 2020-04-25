@@ -1,0 +1,582 @@
+<html >
+ <html class="no-js" lang="zxx" dir="rtl" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>kkesh</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+   <!--  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"> -->
+     <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="/css/jqwidgets/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/parsley.css"> 
+    <link rel="stylesheet" href="/css/chat.css">
+    
+        <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6 ">
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <div class="short_contact_list">
+                                <ul>
+                                  <li><a class="popup-with-form font_arabic" href="#SignIn-form">تسجيل خروج</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div id="sticky-header" class="main-header-area">
+                <div class="container">
+               <div class="row align-items-center">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="/img/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                        </div>
+                        <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                            <div class="Appointment">
+                                <div class="book_btn d-none d-lg-block">
+                                    <a class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+    
+			<!-- Page Content -->
+			<div class="content" style="min-height: 570px;">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="chat-window">
+							
+								<!-- Chat Left -->
+								<div class="chat-cont-left">
+									<div class="chat-header">
+										<span class="font_arabic">لائحة الإستشارات</span>
+									</div>
+									<form class="chat-search">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<i class="fa fa-search"></i>
+											</div>
+											<input type="text" class="form-control" placeholder="Search">
+										</div>
+									</form>
+									<div class="chat-users-list">
+										<div class="chat-scroll">
+											<a href="javascript:void(0);" class="media">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-away">
+																<div class="List-circle">RP</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Ruby Perrin</div>
+														<div class="user-last-chat font_arabic">ضغط في الرأس و شعور بي دوران و اغتراب لي فقدان الوعي الانزعاج من الأصوات وقت الشعور بي الام الرأس و كان الصوت في داخل الرأس</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">2 min</div>
+														<div class="badge badge-success badge-pill">15</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat active">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-online">
+														<div class="List-circle blue-color">DE</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Darren Elder</div>
+														<div class="user-last-chat font_arabic"> اسال عن الصداع حول العين والجزء الخلفي من الرأس بعد عملية الليزك بأسبوع؟ هل هو طبيعي ام يحتاج فحص طبي للعين؟ وايضا عنلي يتطلب الاستخدام الكثير للهاتف والكمبيوتر فهل يؤثر ذلك سلبا ع العلملية واضعاف البصر مع شكري ومودتي</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">8:01 PM</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-away">
+															<div class="List-circle orange-color">DA</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Deborah Angel</div>
+														<div class="user-last-chat font_arabic">اعاني من الم لا يطاق</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">7:30 PM</div>
+														<div class="badge badge-success badge-pill">3</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-online">
+															<div class="List-circle blue-color">SB</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Sofia Brient</div>
+														<div class="user-last-chat font_arabic">مشاكل في النوم لا استطيع النوم لا بعد تعب شديد او بعد نشاط مرهق جدا حتى لو أتت ساعات النوم</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">6:59 PM</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-offline">
+																<div class="List-circle blue-color">MC</div>
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Marvin Campbell</div>
+														<div class="user-last-chat">Yesterday i completed the task</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">11:21 AM</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-online">
+														<img src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Katharine Berthold</div>
+														<div class="user-last-chat">What is the major functionality?</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">10:05 AM</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-away">
+														<img src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Linda Tobin</div>
+														<div class="user-last-chat">This has allowed me to showcase not only my technical skills</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">Yesterday</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-offline">
+														<img src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Paul Richard</div>
+														<div class="user-last-chat">Let's talk briefly in the evening. </div>
+													</div>
+													<div>
+														<div class="last-chat-time block">Sunday</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-online">
+														<img src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. John Gibbs </div>
+														<div class="user-last-chat">Do you have any collections? If so, what of?</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">Saturday</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-img-wrap">
+													<div class="avatar avatar-away">
+														<img src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+												</div>
+												<div class="media-body">
+													<div>
+														<div class="user-name">Dr. Olga Barlow</div>
+														<div class="user-last-chat">Connect the two modules with in 1 day.</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">Friday</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+								<!-- /Chat Left -->
+								<!-- Chat Right -->
+								<div class="chat-cont-right">
+									<div id='jqxtabs'>
+							        <ul style='margin-left: 20px;'>
+							            <li>Details</li>
+							            <li>Chat</li>
+							        </ul>
+							        <div style="direction:rtl;">
+							          <div class="profile-container font_arabic">
+							            <div class="profile-name-title">
+							            بسام عبدالله
+							            </div>
+							               <div class="consultaion-meta"> 
+												<span class="consultaion-meta-date"> 29 سنة </span> | 
+												<span class="consultaion-meta-id"> +966 54 xxxxxxx </span>
+											 </div>
+											 <div class="consultaion-meta-date">رقم الملف الطبي : 12345</div>
+							            <div class="dmi-separator"></div>
+										<div class="entry-meta dmi-mb-1x">
+											<div class="consultaion-meta"> 
+												<span class="consultaion-meta-date"> 2020-03-30 </span> | 
+												<span class="consultaion-meta-id"> استشارة رقم: 312369 </span>
+											 </div>
+										 </div>
+										 <div class="dmi-entry-content"><h2 class="dmi-title font_arabic" itemprop="name"> اسال عن الصداع حول العين والجزء الخلفي من الرأس بعد عملية الليزك بأسبوع؟ هل هو طبيعي ام يحتاج فحص طبي للعين؟ وايضا عنلي يتطلب الاستخدام الكثير للهاتف والكمبيوتر فهل يؤثر ذلك سلبا ع العلملية واضعاف البصر مع شكري ومودتي</h2>
+										</div>
+							            </div>
+							        </div>
+							        <div style="direction:rtl;">
+									<div class="chat-header">
+										<a id="back_user_list" href="javascript:void(0)" class="back-user-list">
+											<i class="material-icons">chevron_left</i>
+										</a>
+										<div class="media">
+											<div class="media-img-wrap">
+												<div class="avatar avatar-online">
+														<div class="chat-circle blue-color">DE</div>
+												<!-- 	<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle"> -->
+												</div>
+											</div>
+											<div class="media-body">
+												<div class="user-name">Dr. Darren Elder</div>
+												<div class="user-status">online</div>
+											</div>
+										</div>
+										<!-- <div class="chat-options">
+											<a href="javascript:void(0)" data-toggle="modal" data-target="#voice_call">
+												<i class="material-icons">local_phone</i>
+											</a>
+											<a href="javascript:void(0)" data-toggle="modal" data-target="#video_call">
+												<i class="material-icons">videocam</i>
+											</a>
+											<a href="javascript:void(0)">
+												<i class="material-icons">more_vert</i>
+											</a>
+										</div> -->
+									</div>
+									<div class="chat-body">
+										<div class="chat-scroll">
+											<ul class="list-unstyled">
+												<li class="media sent">
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>Hello. What can I do for you?</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:30 AM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="media received">
+													<div class="avatar">
+														<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>I'm just looking around.</p>
+																<p>Will you tell me something about yourself?</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:35 AM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<div class="msg-box">
+															<div>
+																<p>Are you there? That time!</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:40 AM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="media sent">
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>Where?</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:42 AM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<div class="msg-box">
+															<div>
+																<p>OK, my name is Limingqiang. I like singing, playing basketballand so on.</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:42 AM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="media received">
+													<div class="avatar">
+														<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>You wait for notice.</p>
+																<p>Consectetuorem ipsum dolor sit?</p>
+																<p>Ok?</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:55 PM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="chat-date">Today</li>
+												<li class="media received">
+													<div class="avatar">
+														<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>10:17 AM</span>
+																		</div>
+																	</li>
+																	<li><a href="#">Edit</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="media sent">
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>Lorem ipsum dollar sit</p>
+																<div class="chat-msg-actions dropdown">
+																	<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																		<i class="fe fe-elipsis-v"></i>
+																	</a>
+																	<div class="dropdown-menu dropdown-menu-right">
+																		<a class="dropdown-item" href="#">Delete</a>
+																	</div>
+																</div>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>10:19 AM</span>
+																		</div>
+																	</li>
+																	<li><a href="#">Edit</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="media received">
+													<div class="avatar">
+														<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+													</div>
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<div class="msg-typing">
+																	<span></span>
+																	<span></span>
+																	<span></span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="chat-footer">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<div class="btn-file btn">
+													<i class="fa fa-paperclip"></i>
+													<input type="file">
+												</div>
+											</div>
+											<input type="text" class="input-msg-send form-control" placeholder="Type something">
+											<div class="input-group-append">
+												<button type="button" class="btn msg-send-btn"><i class="fab fa-telegram-plane"></i></button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /Chat Right -->
+								</div>
+  							  </div>
+							</div>
+						</div>
+					</div>
+					<!-- /Row -->
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->
+
+   
+    <!-- form itself end-->
+    <form id="appointment-form" class="white-popup-block mfp-hide popup-windows">
+        <div class="popup_box ">
+            <div class="popup_inner font_arabic">
+                <h3>تقديم استشارة طبية</h3>
+                <form >
+                    <div class="row">
+						<div class="col-xl-12">
+                           <textarea  rows="4" cols="50" name="comment" form="usrform" placeholder="اشرح الأعراض التي تعاني منها..."></textarea>
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed-btn3">إرسال</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    <!-- form itself end -->
+    <!-- JS here -->
+    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/ajax-form.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/scrollIt.js"></script>
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/nice-select.min.js"></script>
+    <script src="/js/jquery.slicknav.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/gijgo.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scriptchat.js"></script>
+    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+    <script  src="/js/jqwidgets/jqxcore.js"></script>
+    <script  src="/js/jqwidgets/jqxtabs.js"></script>
+    <script>
+    $(document).ready(function () {
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var mapOptions = {
+                center: new google.maps.LatLng(29.979234, 31.134202),
+                zoom: 17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+        }
+        $('#jqxtabs').jqxTabs({ width: '100%', height: '100%',rtl:true,
+            initTabContent: function (tab) {
+                
+            }
+        });
+    });
+	</script>
+</body>
+
+</html>

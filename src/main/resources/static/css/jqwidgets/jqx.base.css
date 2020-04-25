@@ -1454,7 +1454,7 @@ button.jqx-button, input[type=button].jqx-button, input[type=submit].jqx-button 
     padding: 0px;
     overflow: hidden;
     background: transparent;
-    border: 1px solid transparent;
+  /*   border: 1px solid transparent; */
 }
 /*applied to the tab close button.*/
 .jqx-tabs-close-button {
@@ -2611,6 +2611,7 @@ of the horizontal scrollbar.*/
 
 /* jqxWindow */
 .jqx-window {
+	box-shadow: 0px 0px 15px 0px rgba(215, 215, 215, 0.75);
     position: absolute;
     overflow: hidden;
     border: 1px solid transparent;
@@ -4058,8 +4059,9 @@ i.fa.fa-user {
 }
 
 .jqx-tabs-title-selected-top {
-    border-color: #aaa;
-    border-bottom: 1px solid #fff;
+    border-color: #009DFF;
+    border: 0;
+    border-bottom: 3px solid #009DFF;
     background-color: #fff;
 }
 /*applied to the tab's title when the tab is selected and the jqxTab's position property is set to 'bottom' .*/
