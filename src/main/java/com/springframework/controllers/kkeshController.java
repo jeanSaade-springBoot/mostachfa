@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -90,9 +91,9 @@ public class kkeshController{
         return new ResponseEntity<>(this.doctorService.saveDoctor(doctorReqDTO), HttpStatus.OK);
     }
 	
-	@GetMapping(value = "getdoctors/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<List<Doctor>>  getDoctors(@PathVariable("name") String name){
-		List<Doctor> doctorsLst = doctorService.getDoctors(name);
+	@GetMapping(value = "getdoctors", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<List<Doctor>>  getDoctors(@RequestParam(name = "name") String name){
+		List<Doctor> doctorsLst = doctorService.getDoctorsByFNameOrLNameContainingIgnoreCase(name);
 		if(doctorsLst != null)
         return new ResponseEntity<>(doctorsLst, HttpStatus.OK);
 		else

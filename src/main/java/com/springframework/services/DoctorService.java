@@ -28,20 +28,24 @@ public class DoctorService {
 	@Autowired
 	DoctorRepository doctorRepository;
 	
-	public List<Doctor> getDoctors(String name) 
+	public List<Doctor> getDoctorsByFNameOrLNameContainingIgnoreCase(String name) 
 	{      
-        return doctorRepository.findByFNameContainingIgnoreCase(name);
+        return doctorRepository.findByFNameOrLNameContainingIgnoreCase(name);
 	}
 	
+	public List<Doctor> getAllDoctors() 
+	{      
+        return doctorRepository.findAll();
+	}
 	
 	public Doctor saveDoctor(DoctorReqDTO doctorReqDTO)
 	{
 		// TODO Auto-generated method stub
 		Doctor doctor = Doctor.builder()
-	                .fName(doctorReqDTO.getFName())
+	                .fName(doctorReqDTO.getFirstName())
 	                .fatherName(doctorReqDTO.getFatherName())
 	                .doctorIdNumber(doctorReqDTO.getDoctorIdNumber())
-	                .lName(doctorReqDTO.getLName())
+	                .lName(doctorReqDTO.getLastName())
 	                .build();
         return doctorRepository.save(doctor);
 	}
