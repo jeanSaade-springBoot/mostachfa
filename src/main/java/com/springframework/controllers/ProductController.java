@@ -42,7 +42,7 @@ public class ProductController {
     @RequestMapping({"/product/list", "/product"})
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAll());
-        return "html/kkeshLogin";
+        return "html/appointmentMainList";
     }
 
     @RequestMapping("/product/show/{id}")
