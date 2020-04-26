@@ -1,7 +1,5 @@
 package com.springframework.dto;
 
-import com.springframework.dto.SignInResponseDTO.SignInResponseDTOBuilder;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
