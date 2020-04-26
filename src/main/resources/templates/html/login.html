@@ -426,26 +426,42 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     
     <script>
     
-    function redirect()
+    function signin()
     {
-    	 var redirectJson = {}
-   	     redirectJson["redirectEnum"] = "APPOINTMENTDEATIL";
-    	 
-	    $.ajax({
+    	 var signInReqDTO = {}
+    	 signInReqDTO["emailAddress"] = "George.Hamoura@htmail";
+    	 signInReqDTO["password"]     = "1111111";
+	     $.ajax({
 	        type: "POST",
 	        contentType: "application/json",
-	        url: "/kkesh/redirect",
-	        data: JSON.stringify(redirectJson),
+	        url: "/kkesh/signin",
+	        data: JSON.stringify(signInReqDTO),
 	        	    
 	        dataType: 'json',
 	        cache: false,
 	        timeout: 600000,
-	        success: function (data) {
-				alert('success');
+	        success: function (data,response) {
+	        	debugger;
+	        	signInResponseDTO     = data;
+	        	 window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+data.emailAddress;
+/*
+age: null
+doctor: true
+doctorIdNumber: null
+emailAddress: "George.Hamoura@htmail"
+fName: "George"
+id: 4
+isAdmin: false
+isDoctor: true
+isPatient: false
+lName: "Hamoura"
+password: "1111111"
+*/
+				//window.location = '/kkesh/redirect/';
 
 	        },
 	        error: function (e) {
-	        	window.location.href = "/kkesh/redirect/{id}/";
+	        	//window.location.href = "/kkesh/redirect/{id}/";
 	        }
 	    });
 	    
