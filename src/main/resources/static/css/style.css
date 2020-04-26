@@ -433,6 +433,11 @@ body::-webkit-scrollbar-thumb, .contact-list::-webkit-scrollbar-thumb, .chat::-w
         margin-top: 2vh;
         height: calc(79vh - 25px);
     }
+    .slider_area .single_slider {
+    height: 560px;
+    background-repeat: no-repeat;
+    background-position: center center;
+	}
 }
 
 @media (max-width: 600px) {
@@ -1591,8 +1596,8 @@ h3 {
 
 /* line 248, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_header.scss */
 .header-area .header-top_area {
-  padding: 12px 0;
-  background: #F5FBFF;
+    padding: 10px 0 0;
+    background: #ffffff;
 }
 
 @media (max-width: 767px) {
@@ -1656,7 +1661,6 @@ h3 {
 
 /* line 8, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_slider.scss */
 .slider_area .single_slider {
-  height: 700px;
    background-repeat: no-repeat;
   background-position: center center;
 }
