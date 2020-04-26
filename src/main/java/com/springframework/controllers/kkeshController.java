@@ -135,7 +135,7 @@ public class kkeshController{
 	
 	
 	
-	@GetMapping(value = "signin", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "signin", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<SignInResponseDTO>  signInUser(@RequestBody SignInReqDTO signInReqDTO){
 		Patient patient = patientService.signIn(signInReqDTO);
 		if(patient != null)
@@ -159,7 +159,7 @@ public class kkeshController{
 	 *Begin Doctor section
 	 */
 	@PostMapping(value = "registerdoctor", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<Doctor>  saveDoctor(@RequestBody DoctorReqDTO doctorReqDTO){
+    public  ResponseEntity<Doctor>  registerDoctor(@RequestBody DoctorReqDTO doctorReqDTO){
         return new ResponseEntity<>(this.doctorService.saveDoctor(doctorReqDTO), HttpStatus.OK);
     }
 	
@@ -176,6 +176,7 @@ public class kkeshController{
 		else
 			return new ResponseEntity<>(doctorsLst, HttpStatus.NOT_FOUND);
     }
+	
 	/*
 	 *End Doctor section
 	 */
@@ -212,14 +213,45 @@ public class kkeshController{
 			return new ResponseEntity<>(appointmentTrack, HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@GetMapping(value = "getappointmentlstbyuser/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> getAppointmentLstByUser(@PathVariable("emailAddress") String emailAddress)
+	{
+		List<Appointment> appointmentLst = null;
+		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
+		
+		if(signInResponseDTO.isAdmin)
+		{
+			//get admin list
+		}
+		if(signInResponseDTO.isDoctor)
+		{
+			// get doctor list
+		}
+		if(signInResponseDTO.isPatient)
+		{
+			// get patient list
+		}
+		
+		return new ResponseEntity<>(appointmentLst,HttpStatus.OK);
+	}
 	/*
 	 *End Appointment section
 	 */
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 *Begin redirection section
 	 */
-	@RequestMapping("/mainscreen")
+	@RequestMapping("/")
     public ModelAndView mainPage(ModelMap model)
     {
 		model.addAttribute("start", "1");
@@ -244,7 +276,7 @@ public class kkeshController{
     public ModelAndView  targetScreen(ModelMap model)
     {
     	model.addAttribute("attribute", "redirectWithRedirectPrefix");
-    	return new ModelAndView("/html/appointmentDetail", model);
+    	return new ModelAndView("/html/appointmentMainList", model);
     }  
     /*
 	 *End Redirection section
