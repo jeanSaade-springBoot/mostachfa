@@ -251,33 +251,21 @@ public class kkeshController{
 	/*
 	 *Begin redirection section
 	 */
-	@RequestMapping("/")
-    public ModelAndView mainPage(ModelMap model)
-    {
-		model.addAttribute("start", "1");
-    	return new ModelAndView("/html/login", model);
-    }
 	
-	
-	@RequestMapping(value = "/redirect", method = RequestMethod.POST)
-    public KKeshReqObjectDTO redirectTotarget(@RequestBody KKeshReqObjectDTO kkeshReqObjectDTO,final RedirectAttributes redirectAttributes)
+	@RequestMapping( value =  "/secureforward")
+    public ModelAndView mainPage(ModelMap model,@RequestParam(name = "pageEnum") String pageEnum,@RequestParam(name = "emailAddress") String emailAddress)
     {
-      	String patientId = kkeshReqObjectDTO.getPatientId();
-      	RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(kkeshReqObjectDTO.getRedirectEnum());
-      	String redirectUrl = redirectEnum.label;
-      	
-      	ModelMap model = new ModelMap();
-      	model.addAttribute("kkeshReqObjectDTO", kkeshReqObjectDTO);
-      	return kkeshReqObjectDTO;
+		model.addAttribute("kkeshReqObjectDTO", "123");
+		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
+		String redirectUrl = redirectEnum.label;
+		if(!isBlank(emailAddress))
+		{
+			SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
+			model.addAttribute("signInResponseDTO", signInResponseDTO);
+		}
+    	return new ModelAndView(redirectUrl, model);
     }
 
-	
-    @RequestMapping("/redirect")
-    public ModelAndView  targetScreen(ModelMap model)
-    {
-    	model.addAttribute("attribute", "redirectWithRedirectPrefix");
-    	return new ModelAndView("/html/appointmentMainList", model);
-    }  
     /*
 	 *End Redirection section
 	 */
