@@ -616,12 +616,26 @@ pre code {
     }
 }
 
-@media (min-width:1200px) {
+@media (min-width:1200px)  {
     .container {
         max-width: 1510px
     }
 }
-
+@media (min-width:1200px) and (max-width:1400px){
+    .container {
+        max-width: 1295px
+    }
+}
+@media (min-width:1400px) and (max-width:1600px){
+    .container {
+        max-width: 1435px
+    }
+}
+@media (min-width:1600px) and (max-width:1800px){
+    .container {
+        max-width: 1600px
+    }
+}
 .container-fluid {
     width: 100%;
     padding-right: 15px;
