@@ -10,14 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.springframework.domain.Appointment;
 import com.springframework.domain.Doctor;
-import com.springframework.domain.User;
+import com.springframework.domain.Patient;
 import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.DoctorReqDTO;
-import com.springframework.dto.UserReqDTO;
+import com.springframework.dto.PatientReqDTO;
+import com.springframework.dto.SignInReqDTO;
 import com.springframework.enums.AppointmentStatusEnum;
 import com.springframework.repositories.AppointmentRepository;
 import com.springframework.repositories.DoctorRepository;
-import com.springframework.repositories.UserRepository;
+import com.springframework.repositories.PatientRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +47,22 @@ public class DoctorService {
 	                .fatherName(doctorReqDTO.getFatherName())
 	                .doctorIdNumber(doctorReqDTO.getDoctorIdNumber())
 	                .lName(doctorReqDTO.getLastName())
+	                .emailAddress(doctorReqDTO.getEmailAddress())
+	                .password(doctorReqDTO.getPassword())
 	                .build();
         return doctorRepository.save(doctor);
+	}
+	
+	public Optional<Doctor> findDoctorByEmail(String emailAddress) 
+	{
+		// TODO Auto-generated method stub 
+		return doctorRepository.findByEmailAddress(emailAddress);
+	}
+	
+	public Doctor signIn(SignInReqDTO signInReqDTO) 
+	{
+		// TODO Auto-generated method stub 
+		Doctor doctor = doctorRepository.findByPasswordAndEmailAddress(signInReqDTO.getPassword(), signInReqDTO.getEmailAddress());
+		return doctor;
 	}
 }

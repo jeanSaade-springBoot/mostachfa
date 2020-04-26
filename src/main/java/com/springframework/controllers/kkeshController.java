@@ -19,61 +19,137 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.springframework.domain.Admin;
 import com.springframework.domain.Appointment;
 import com.springframework.domain.AppointmentTrack;
 import com.springframework.domain.Doctor;
-import com.springframework.domain.User;
+import com.springframework.domain.Patient;
 import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.AppointmentTrackReqDTO;
 import com.springframework.dto.DoctorReqDTO;
 import com.springframework.dto.KKeshReqObjectDTO;
-import com.springframework.dto.UserReqDTO;
+import com.springframework.dto.PatientReqDTO;
+import com.springframework.dto.SignInReqDTO;
+import com.springframework.dto.SignInResponseDTO;
+
 import com.springframework.exceptions.SystemException;
+import com.springframework.services.AdminService;
 import com.springframework.services.AppointmentService;
 import com.springframework.services.AppointmentTrackService;
 import com.springframework.services.DoctorService;
-import com.springframework.services.UserService;
+import com.springframework.services.PatientService;
 import com.springframework.enums.AppointmentStatusEnum;
 import com.springframework.enums.RedirectPagesEnum;
+import com.springframework.enums.ResponseCodeEnum;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
+import com.springframework.utils.UserUtils;
+
 @RestController
 @RequestMapping(value = "kkesh")
 public class kkeshController{
 	
 	@Autowired
-	private final UserService userService;
+	private final PatientService patientService;
 	@Autowired
 	private final AppointmentService appointmentService;
 	@Autowired
 	private final AppointmentTrackService appointmentTrackService;
 	@Autowired
 	private final DoctorService doctorService;
+	@Autowired
+	private final AdminService adminService;
 
-	public kkeshController(UserService userService,
+	public kkeshController(PatientService patientService,
 			AppointmentService appointmentService,
 			AppointmentTrackService appointmentTrackService,
-			DoctorService doctorService) {
-		this.userService             = userService;
+			DoctorService doctorService,
+			AdminService adminService) {
+		this.patientService             = patientService;
 		this.appointmentService      = appointmentService;
 		this.appointmentTrackService = appointmentTrackService;
 		this.doctorService           = doctorService;
+		this.adminService            = adminService;
 	}
 	/*
 	 *Begin user/patient section
 	 */
-	@PostMapping(value = "registeruser", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<User>  saveUser(@RequestBody UserReqDTO userReqDTO){
-        return new ResponseEntity<>(this.userService.saveUser(userReqDTO), HttpStatus.OK);
+	@PostMapping(value = "registerpatient", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Patient>  registerpatient(@RequestBody PatientReqDTO patientReqDTO){
+		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(patientReqDTO.getEmailAddress());
+		if(signInResponseDTO != null)
+			 return new ResponseEntity<>(this.patientService.saveUser(patientReqDTO), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.patientService.saveUser(patientReqDTO), HttpStatus.OK);
     }
 	
-	@GetMapping(value = "signin", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<User>  signInUser(@RequestBody UserReqDTO userReqDTO){
-		User user = userService.signIn(userReqDTO);
-		if(user != null)
-        return new ResponseEntity<>(user, HttpStatus.OK);
+	@GetMapping(value = "checkifuserexists", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<SignInResponseDTO>  checkIfUserExists(@RequestParam(name = "emailAddress") String emailAddress){
+		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
+		if(signInResponseDTO != null)
+		   return new ResponseEntity<>(signInResponseDTO, HttpStatus.FOUND);
 		else
-				return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(signInResponseDTO, HttpStatus.OK);
+    }
+	
+	public SignInResponseDTO getUserByEmailFromAllEntity(String emailAddress)
+	{
+		SignInResponseDTO signInResponseDTO = null;
+		
+		Optional<Patient> patient = patientService.findPatientByEmail(emailAddress);
+		if(patient.isPresent())
+		{
+			signInResponseDTO = UserUtils.buildSigninResponseFromPatient(patient.get());
+			return signInResponseDTO;
+		}
+		Optional<Doctor> doctor = doctorService.findDoctorByEmail(emailAddress);
+		if(doctor.isPresent())
+		{
+			
+			signInResponseDTO = UserUtils.buildSigninResponseFromDoctor(doctor.get());
+			return signInResponseDTO;
+		}
+		Optional<Admin> admin = adminService.findAdminByEmail(emailAddress);
+		if(admin.isPresent())
+		{
+			signInResponseDTO = UserUtils.buildSigninResponseFromAdmin(admin.get());
+			return signInResponseDTO;
+		}
+		return signInResponseDTO;
+	}
+	
+	
+	@GetMapping(value = "findadminbyemail", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Optional<Admin>>  findAdminByEmail(@RequestParam(name = "emailAddress") String emailAddress){
+    	 return new ResponseEntity<>(adminService.findAdminByEmail(emailAddress), HttpStatus.OK);
+    }
+	
+	@GetMapping(value = "findpatientbyemail", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Optional<Patient>>  findPatientByEmail(@RequestParam(name = "emailAddress") String emailAddress){
+    	 return new ResponseEntity<>(patientService.findPatientByEmail(emailAddress), HttpStatus.OK);
+    }
+	
+	@GetMapping(value = "finddoctorbyemail", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Optional<Doctor>>  findDoctortByEmail(@RequestParam(name = "emailAddress") String emailAddress){
+    	 return new ResponseEntity<>(doctorService.findDoctorByEmail(emailAddress), HttpStatus.OK);
+    }
+	
+	
+	
+	@GetMapping(value = "signin", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<SignInResponseDTO>  signInUser(@RequestBody SignInReqDTO signInReqDTO){
+		Patient patient = patientService.signIn(signInReqDTO);
+		if(patient != null)
+			return new ResponseEntity<>(UserUtils.buildSigninResponseFromPatient(patient), HttpStatus.OK);
+		
+		Doctor doctor = doctorService.signIn(signInReqDTO);
+		if(doctor != null)
+			 return new ResponseEntity<>(UserUtils.buildSigninResponseFromDoctor(doctor), HttpStatus.OK);
+		
+		Admin admin = adminService.signIn(signInReqDTO);
+		if(admin != null)
+			 return new ResponseEntity<>(UserUtils.buildSigninResponseFromAdmin(admin), HttpStatus.OK);
+		
+	    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 	/*
 	 * end user/patient section
@@ -82,7 +158,7 @@ public class kkeshController{
 	/*
 	 *Begin Doctor section
 	 */
-	@PostMapping(value = "savedoctor", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "registerdoctor", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Doctor>  saveDoctor(@RequestBody DoctorReqDTO doctorReqDTO){
         return new ResponseEntity<>(this.doctorService.saveDoctor(doctorReqDTO), HttpStatus.OK);
     }

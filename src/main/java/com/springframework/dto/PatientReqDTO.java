@@ -1,10 +1,4 @@
-package com.springframework.domain;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+package com.springframework.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor 
 @AllArgsConstructor
-@Entity
-@Table(name = "user")
-public class User 
-{
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+public class PatientReqDTO {
 	public String fName;
 	public String lName;
 	public String userCode;

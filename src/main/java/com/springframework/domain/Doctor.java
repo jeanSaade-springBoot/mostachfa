@@ -31,4 +31,6 @@ public class Doctor {
 	private String fatherName;
     private String lName;
     private String doctorIdNumber;
+    private String emailAddress;
+    private String password;
 }

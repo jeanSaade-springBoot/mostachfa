@@ -8,13 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.springframework.domain.Appointment;
-import com.springframework.domain.User;
+import com.springframework.domain.Patient;
 import com.springframework.dto.AppointmentReqDTO;
-import com.springframework.dto.UserReqDTO;
+import com.springframework.dto.PatientReqDTO;
+import com.springframework.dto.SignInResponseDTO;
 import com.springframework.enums.AppointmentStatusEnum;
 import com.springframework.enums.RedirectPagesEnum;
 import com.springframework.repositories.AppointmentRepository;
-import com.springframework.repositories.UserRepository;
+import com.springframework.repositories.PatientRepository;
 
 import com.springframework.enums.AppointmentStatusEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,6 @@ public class AppointmentService {
 	{
         appointmentRepository.updateAppointmentStatus(appointmentId,statusId);
 	}
-	
 	
 	
 

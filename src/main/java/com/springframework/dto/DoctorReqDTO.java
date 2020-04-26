@@ -14,4 +14,6 @@ public class DoctorReqDTO {
 	private String fatherName;
     private String lastName;
     private String doctorIdNumber;
+    String emailAddress;
+    String password;
 }

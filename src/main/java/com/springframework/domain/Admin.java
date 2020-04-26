@@ -30,4 +30,6 @@ public class Admin {
     private String fName;
 	private String fatherName;
     private String lName;
+    private String emailAddress;
+    private String password;
 }
