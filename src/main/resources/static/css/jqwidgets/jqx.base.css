@@ -7747,9 +7747,9 @@ jqx-knob {
     position: relative;
     box-sizing: content-box;
 }
-.jqx-time-picker .jqx-svg-picker.animate {
+/* .jqx-time-picker .jqx-svg-picker.animate {
     animation: jqx-time-picker-animation 0.5s linear;
-}
+} */
 .jqx-time-picker[disabled] {
     opacity: 0.55;
     cursor: default;

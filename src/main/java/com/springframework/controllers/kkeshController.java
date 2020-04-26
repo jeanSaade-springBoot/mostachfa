@@ -119,7 +119,7 @@ public class kkeshController{
     public ModelAndView mainPage(ModelMap model)
     {
 		model.addAttribute("start", "1");
-    	return new ModelAndView("/html/kkeshLogin", model);
+    	return new ModelAndView("/html/login", model);
     }
 	
 	
