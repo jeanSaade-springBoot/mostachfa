@@ -202,6 +202,9 @@ input[type=password] {
 	min-height: 200px;
 	padding: 15px 0 0;
 }
+.input-group-prepend {
+    visibility: hidden;
+}
 .header-area .main-header-area {
     padding: 2px 0;
     background: #fff;
@@ -883,6 +886,9 @@ button.bg-danger:hover {
 .bg-danger-light {
 	background-color: rgba(242, 17, 54,0.12) !important;
 	color: #e63c3c !important;
+	FLOAT: left;
+	margin-left: 0.5rem;
+    direction: ltr;
 }
 .bg-warning-light {
 	background-color: rgba(255, 152, 0,0.12) !important;
@@ -891,6 +897,8 @@ button.bg-danger:hover {
 .bg-success-light {
 	background-color: rgba(15, 183, 107,0.12) !important;
 	color: #26af48 !important;
+	FLOAT: left;
+	 direction: ltr;
 }
 .bg-purple-light {
 	background-color: rgba(197, 128, 255,0.12) !important;
@@ -4246,7 +4254,7 @@ html.menu-opened body {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-    height: 107px;
+    height: 106px;
 	justify-content: space-between;
 	-webkit-justify-content: space-between;
 	-ms-flex-pack: space-between;
@@ -4520,17 +4528,17 @@ span.consultaion-meta-id {
     margin-bottom: 20px;
 }
 .chat-cont-right .chat-body .media.sent .media-body {
-	-webkit-box-align: flex-end;
-	-ms-flex-align: flex-end;
-	align-items: flex-end;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	justify-content: flex-end;
-	-webkit-justify-content: flex-end;
-	-ms-flex-pack: flex-end;
+	-webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: flex-start;
     margin-left: 0;
 }
 .chat-cont-right .chat-body .media.sent .media-body .msg-box > div {
