@@ -127,7 +127,7 @@ public class kkeshController{
 		try {
 			appointmentTrack = this.appointmentTrackService.closeAppointmentTrack(appointmentTrackReqDTO);
 			appointmentTrack = this.appointmentTrackService.saveAppointmentTrack(appointmentTrackReqDTO);
-			appointmentService.updateAppointmentStatus(appointmentTrack.getAppointmentId(), AppointmentStatusEnum.PENDING.name());
+			appointmentService.updateAppointmentStatus(appointmentTrack.getAppointmentId(), AppointmentStatusEnum.PENDING.getCode());
 			
 			return new ResponseEntity<>(
 					appointmentTrack,

@@ -42,9 +42,9 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
 	}
 	
-	public void updateAppointmentStatus(String appointmentId, String status) 
+	public void updateAppointmentStatus(String appointmentId, int statusId) 
 	{
-        appointmentRepository.updateAppointmentStatus(appointmentId,status);
+        appointmentRepository.updateAppointmentStatus(appointmentId,statusId);
 	}
 	
 	
