@@ -214,8 +214,8 @@ public class kkeshController{
 		}
 	}
 	
-	@GetMapping(value = "getappointmentbyuser/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Appointment>> getAppointmentByUser(@PathVariable("emailAddress") String emailAddress)
+	@GetMapping(value = "getappointmentlstbyuser/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> getAppointmentLstByUser(@PathVariable("emailAddress") String emailAddress)
 	{
 		List<Appointment> appointmentLst = null;
 		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
