@@ -1,5 +1,6 @@
 package com.springframework.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,23 @@ public class AppointmentService {
 	{
         appointmentRepository.updateAppointmentStatus(appointmentId,statusId);
 	}
+	
+	public List<Appointment> getAppointmentAdminList() 
+	{
+        return appointmentRepository.findAll();
+	}
+	
+	public List<Appointment> getAppointmentDoctorList(long id,AppointmentStatusEnum status) 
+	{
+        return appointmentRepository.findByDoctorIdAndStatus(String.valueOf(id));
+	}
+	
+	public List<Appointment> getAppointmentPatientList(long id,AppointmentStatusEnum status) 
+	{
+        return appointmentRepository.findByPatientIdAndStatus(String.valueOf(id));
+	}
+	
+	
 	
 	
 

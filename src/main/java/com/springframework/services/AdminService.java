@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.springframework.domain.Admin;
+import com.springframework.domain.Doctor;
 import com.springframework.domain.Patient;
+import com.springframework.dto.AdminReqDTO;
+import com.springframework.dto.DoctorReqDTO;
 import com.springframework.dto.PatientReqDTO;
 import com.springframework.dto.SignInReqDTO;
 import com.springframework.repositories.AdminRepository;
@@ -36,6 +39,19 @@ public class AdminService {
 		// TODO Auto-generated method stub 
 		Admin admin = adminRepository.findByPasswordAndEmailAddress(signInReqDTO.getPassword(), signInReqDTO.getEmailAddress());
 		return admin;
+	}
+	
+	public Admin saveAdmin(AdminReqDTO adminReqDTO)
+	{
+		// TODO Auto-generated method stub
+		Admin admin = Admin.builder()
+	                .fName(adminReqDTO.getFirstName())
+	                .fatherName(adminReqDTO.getFatherName())
+	                .lName(adminReqDTO.getLastName())
+	                .emailAddress(adminReqDTO.getEmailAddress())
+	                .password(adminReqDTO.getPassword())
+	                .build();
+        return adminRepository.save(admin);
 	}
 
 }

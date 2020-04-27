@@ -24,6 +24,7 @@ import com.springframework.domain.Appointment;
 import com.springframework.domain.AppointmentTrack;
 import com.springframework.domain.Doctor;
 import com.springframework.domain.Patient;
+import com.springframework.dto.AdminReqDTO;
 import com.springframework.dto.AppointmentReqDTO;
 import com.springframework.dto.AppointmentTrackReqDTO;
 import com.springframework.dto.DoctorReqDTO;
@@ -44,7 +45,7 @@ import com.springframework.enums.ResponseCodeEnum;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
 import com.springframework.utils.UserUtils;
-import com.google.gson.Gson;
+
 @RestController
 @RequestMapping(value = "kkesh")
 public class kkeshController{
@@ -180,6 +181,10 @@ public class kkeshController{
 	/*
 	 *End Doctor section
 	 */
+	@PostMapping(value = "registeradmin", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Admin>  saveAdmin(@RequestBody AdminReqDTO adminReqDTO){
+        return new ResponseEntity<>(this.adminService.saveAdmin(adminReqDTO), HttpStatus.OK);
+    }
 	
 	/*
 	 *Begin Appointment section
@@ -214,6 +219,30 @@ public class kkeshController{
 		}
 	}
 	
+	@GetMapping(value = "getappointmentadminlist/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> getAppointmentAdminList(@PathVariable("emailAddress") String emailAddress)
+	{
+		return new ResponseEntity<>(appointmentService.getAppointmentAdminList(),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "getappointmentdoctorlist/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> getAppointmentDoctorList(@PathVariable("emailAddress") String emailAddress)
+	{
+		Optional<Doctor> doctOpt = doctorService.findDoctorByEmail(emailAddress);
+		Doctor doctor = doctOpt.get();
+		return new ResponseEntity<>(appointmentService.getAppointmentDoctorList(doctor.getId(),AppointmentStatusEnum.PENDING),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "getappointmentPatientlist/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Appointment>> getAppointmentPatientList(@PathVariable("emailAddress") String emailAddress)
+	{
+		Optional<Patient> patientOpt = patientService.findPatientByEmail(emailAddress);
+		Patient patient = patientOpt.get();
+		return new ResponseEntity<>(appointmentService.getAppointmentPatientList(patient.getId(),AppointmentStatusEnum.PENDING),HttpStatus.OK);
+	}
+	
+	
+	
 	@GetMapping(value = "getappointmentlstbyuser/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Appointment>> getAppointmentLstByUser(@PathVariable("emailAddress") String emailAddress)
 	{
@@ -221,32 +250,17 @@ public class kkeshController{
 		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
 		
 		if(signInResponseDTO.isAdmin)
-		{
-			//get admin list
-		}
+			appointmentLst = appointmentService.getAppointmentPatientList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
 		if(signInResponseDTO.isDoctor)
-		{
-			// get doctor list
-		}
+			appointmentLst = appointmentService.getAppointmentPatientList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
 		if(signInResponseDTO.isPatient)
-		{
-			// get patient list
-		}
+			appointmentLst = appointmentService.getAppointmentPatientList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
 		
 		return new ResponseEntity<>(appointmentLst,HttpStatus.OK);
 	}
 	/*
 	 *End Appointment section
 	 */
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/*
 	 *Begin redirection section
@@ -255,14 +269,12 @@ public class kkeshController{
 	@RequestMapping( value =  "/secureforward")
     public ModelAndView mainPage(ModelMap model,@RequestParam(name = "pageEnum") String pageEnum,@RequestParam(name = "emailAddress") String emailAddress)
     {
-		model.addAttribute("kkeshReqObjectDTO", "123");
 		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
 		String redirectUrl = redirectEnum.label;
 		if(!isBlank(emailAddress))
 		{
-			Gson gson = new Gson();
 			SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
-			model.addAttribute("signInResponseDTO", gson.toJson(signInResponseDTO));
+			model.addAttribute("signInResponseDTO", signInResponseDTO);
 		}
     	return new ModelAndView(redirectUrl, model);
     }
