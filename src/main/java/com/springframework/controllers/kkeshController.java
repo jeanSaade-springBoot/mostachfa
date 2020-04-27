@@ -44,7 +44,7 @@ import com.springframework.enums.ResponseCodeEnum;
 
 import static org.apache.commons.lang.StringUtils.isBlank;
 import com.springframework.utils.UserUtils;
-
+import com.google.gson.Gson;
 @RestController
 @RequestMapping(value = "kkesh")
 public class kkeshController{
@@ -239,6 +239,15 @@ public class kkeshController{
 	 *End Appointment section
 	 */
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 *Begin redirection section
 	 */
@@ -246,12 +255,14 @@ public class kkeshController{
 	@RequestMapping( value =  "/secureforward")
     public ModelAndView mainPage(ModelMap model,@RequestParam(name = "pageEnum") String pageEnum,@RequestParam(name = "emailAddress") String emailAddress)
     {
+		model.addAttribute("kkeshReqObjectDTO", "123");
 		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
 		String redirectUrl = redirectEnum.label;
 		if(!isBlank(emailAddress))
 		{
+			Gson gson = new Gson();
 			SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
-			model.addAttribute("signInResponseDTO", signInResponseDTO);
+			model.addAttribute("signInResponseDTO", gson.toJson(signInResponseDTO));
 		}
     	return new ModelAndView(redirectUrl, model);
     }

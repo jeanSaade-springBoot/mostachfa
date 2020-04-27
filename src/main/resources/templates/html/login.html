@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/css/nice-select.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/parsley.css"> 
+    <link rel="stylesheet" href="/css/sweetalert2.min.css"> 
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -44,7 +45,8 @@
                                 <!-- 
                                   <li><a onclick="redirect()">تسجيل الدخول</a></li>
                                   -->
-                                     <li><a class="popup-with-form font_arabic" href="#SignIn-form">تسجيل الدخول</a></li>
+                                     <li><a class="popup-with-form font_arabic open-signin-popup" href="#SignIn-form">تسجيل الدخول</a></li>
+                                    <li><a class="popup-with-form font_arabic open-signup-popup" href="#SignUp-form">تسجيل مستخدم جديد</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -97,7 +99,7 @@
                                     For Hole Family </h3>
                                 <p>In healthcare sector, service excellence is the facility of <br> the hospital as
                                     healthcare service provider to consistently.</p>
-                                <a href="#SignUp-form" class="popup-with-form boxed-btn3 font_arabic">تسجيل مستخدم جديد</a>
+                                <a href="#SignUp-form" class="popup-with-form boxed-btn3 font_arabic open-signup-popup">تسجيل مستخدم جديد</a>
                             </div>
                         </div>
                     </div>
@@ -166,8 +168,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <button type="submit" class="boxed-btn3 font_arabic">ادخل</button>
 						 </div>
 						 <div class="col-xl-12" style="margin-top: 1%;">
-                            <p class="message font_arabic">ليس لديك حساب؟<a href="#SignUp-form" class="popup-with-form font_arabic" style="color: #007bff;    margin-right: 1%;">إنشاء حساب جديد</a></p>
+                            <p class="message font_arabic">ليس لديك حساب؟<a href="#SignUp-form" class="popup-with-form font_arabic open-signup-popup" style="color: #007bff;    margin-right: 1%;">إنشاء حساب جديد</a>
+                            <a href="/kkesh/secureforward?pageEnum=LOGIN&emailAddress=" class="back" style="color: #007bff;">العودة</a></p>
                         </div>
+                         <div class="col-xl-12"  style="margin-top: 1%;">
+						   <div id="error-signin" class="error-signin font_arabic" style="display:none;">البريد الإلكتروني أو كلمة السر خاطئة</div>
+						 </div>
+						
                     </div>
                 </form>
             </div>
@@ -395,7 +402,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <button type="submit" class="boxed-btn3 font_arabic">سجل</button>
 						 </div>
 						 <div class="col-xl-12" style="margin-top: 1%;">
-                           <a href="#SignIn-form" class="popup-with-form font_arabic" style="color: #007bff;  margin-right: 1%;">تسجيل الدخول بدلاً من ذلك.</a>
+                           <a  href="#SignIn-form" class="popup-with-form font_arabic open-signin-popup" style="color: #007bff;  margin-right: 1%;">تسجيل الدخول بدلاً من ذلك.</a>
                         </div>
                     </div>
                 </form>
@@ -422,51 +429,60 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="/js/plugins.js"></script>
     <script src="/js/gijgo.min.js"></script>
     <script src="/js/parsley.min.js"></script>
+     <script src="/js/sweetalert2.min.js"></script>
     <script src="/js/main.js"></script>
     
     <script>
-    
-    function signin()
-    {
-    	 var signInReqDTO = {}
-    	 signInReqDTO["emailAddress"] = "George.Hamoura@htmail";
-    	 signInReqDTO["password"]     = "1111111";
-	     $.ajax({
-	        type: "POST",
-	        contentType: "application/json",
-	        url: "/kkesh/signin",
-	        data: JSON.stringify(signInReqDTO),
-	        	    
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data,response) {
-	        	debugger;
-	        	signInResponseDTO     = data;
-	        	 window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+data.emailAddress;
-/*
-age: null
-doctor: true
-doctorIdNumber: null
-emailAddress: "George.Hamoura@htmail"
-fName: "George"
-id: 4
-isAdmin: false
-isDoctor: true
-isPatient: false
-lName: "Hamoura"
-password: "1111111"
-*/
-				//window.location = '/kkesh/redirect/';
+  	var url_string = window.location.href; 
+   	var url = new URL(url_string);
+   	var url_emailAddress = url.searchParams.get("emailAddress");
+   	
+    $(document).ready(function () {
+ 
+   	if(url_emailAddress=="error")
+     {
 
-	        },
-	        error: function (e) {
-	        	//window.location.href = "/kkesh/redirect/{id}/";
-	        }
-	    });
-	    
-    }
+     	 url.searchParams.set('emailAddress','')
+   		jQuery.magnificPopup.open({
+    		  items: {src: '#SignIn-form'},type: 'inline'}, 0);
+     	 $('#error-signin').show(); 
+     }	
     
+	  $('.open-signin-popup').magnificPopup({
+    	  type:'inline',
+    	  callbacks: {
+    	    open: function() {
+    	      $.magnificPopup.instance.close = function () {
+    	    	  $('#SignIn-form').parsley().reset();
+    	    	  $(':input','#SignIn-form')
+    	    	    .not(':button, :submit, :reset, :hidden')
+    	    	    .val('')
+    	    	    .removeAttr('checked')
+    	    	    .removeAttr('selected');
+    	           $.magnificPopup.proto.close.call(this);
+    	      }; 
+    	    }
+    	  }
+    	});
+	  
+	  $('.open-signup-popup').magnificPopup({
+    	  type:'inline',
+    	  callbacks: {
+    	    open: function() {
+    	      $.magnificPopup.instance.close = function () {
+    	    	  $('#SignUp-form').parsley().reset();
+    	    	  $(':input','#SignUp-form')
+    	    	    .not(':button, :submit, :reset, :hidden')
+    	    	    .val('')
+    	    	    .removeAttr('checked')
+    	    	    .removeAttr('selected');
+    	           $.magnificPopup.proto.close.call(this);
+    	      }; 
+    	    }
+    	  }
+    	});
+  });
+  
     
     function getAge(dateString) {
         var today = new Date();
@@ -479,48 +495,33 @@ password: "1111111"
         return age;
     }
     
-    $("#SignIn-form").parsley().on('field:validated', function() {
+    $("#SignIn-form").parsley().on('field:validated', function(e) {
         var ok = $('.parsley-error').length === 0;
         $('.bs-callout-info').toggleClass('hidden', !ok);
         $('.bs-callout-warning').toggleClass('hidden', ok);
       })
       .on('form:submit', function() {
-    	  var signInJson = {}
-    	  signInJson["emailAddress"] = $("#emailAddress-signin").val();
-    	  signInJson["password"] = $("#password-signin").val();
-    	 debugger;
-    	 var settings = {
-    			  "url": "/kkeshuser/signin",
-    			  "method": "GET",
-    			  "timeout": 0,
-    			  "headers": {
-    			    "Content-Type": "application/json"
-    			  },
-    			  "data": JSON.stringify({"emailAddress":"m.n@gmail.com","password":"1234567"}),
-    			};
-
-    			$.ajax(settings).done(function (response) {
-    				alert('success here')
-
-    			});
-    	 
-    	  $.ajax({
-    	    type: "GET",
-  	        url: "/kkeshuser/signin",
-  	        headers: { 'x-my-custom-header': 'some value' },
-  	        data: JSON.stringify(signInJson),
-  	        dataType: 'json',
-  	        cache: false,
-  	        timeout: 600000,
-  	        success: function (data) {
-					alert('success')
-
-  	        },
-  	        error: function (e) {
-					 alert("ERROR : ", e);
-
-  	        }
-  	    });
+    	 	 var signInReqDTO = {}
+        	 signInReqDTO["emailAddress"] = $("#emailAddress-signin").val();
+        	 signInReqDTO["password"]   = $("#password-signin").val();
+    	     $.ajax({
+    	        type: "POST",
+    	        contentType: "application/json",
+    	        url: "/kkesh/signin",
+    	        data: JSON.stringify(signInReqDTO),
+    	        dataType: 'json',
+    	        cache: false,
+    	        timeout: 600000,
+    	        success: function (data,response) {
+    	        	signInResponseDTO     = data;
+    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+data.emailAddress;
+   			  },
+    	        error: function (e) {
+    	        	alert(e)
+    	        	window.location.href = "/kkesh/secureforward?pageEnum=LOGIN&emailAddress=error";
+    	        }
+    	    });
+    	    
       });
     $("#SignUp-form").parsley().on('field:validated', function() {
         var ok = $('.parsley-error').length === 0;
@@ -528,38 +529,41 @@ password: "1111111"
         $('.bs-callout-warning').toggleClass('hidden', ok);
       })
       .on('form:submit', function() {
-    	  var signInUpJson = {}
+    	  var patientReqDTO = {}
     	  var password = $("#password").val();
           var confirmPassword = $("#confirm-password").val();
           if (password != confirmPassword) {
-              alert("Passwords do not match.");
+              Swal.fire('كلمة المرور غير مطابقة.')
               return false;
           }
           else{
-        	  signInUpJson["fName"] = $("#fName").val();
-        	  signInUpJson["lName"] = $("#lName").val();
-        	  signInUpJson["userCode"] = null;
-        	  signInUpJson["emailAddress"] = $("#emailAddress").val();
-        	  signInUpJson["fileNbr"] = $("#fileNbr").val();
-        	  signInUpJson["password"] = $("#password").val();
-        	  signInUpJson["age"] = getAge($("#day").val()+"/"+$("#month").val()+"/"+$("#year").val());
-	    	  signInUpJson["telNumber"] =  $("#telNumber").val();
-	    	  signInUpJson["ikamaNbr"] = '';
+        	  patientReqDTO["fName"] = $("#fName").val();
+        	  patientReqDTO["lName"] = $("#lName").val();
+        	  patientReqDTO["userCode"] = null;
+        	  patientReqDTO["emailAddress"] = $("#emailAddress").val();
+        	  patientReqDTO["fileNbr"] = $("#fileNbr").val();
+        	  patientReqDTO["password"] = $("#password").val();
+        	  patientReqDTO["age"] = getAge($("#day").val()+"/"+$("#month").val()+"/"+$("#year").val());
+        	  patientReqDTO["telNumber"] =  $("#telNumber").val();
+        	  patientReqDTO["ikamaNbr"] = '';
 	    	  
 	    	  debugger;
 	    	    $.ajax({
 	    	        type: "POST",
 	    	        contentType: "application/json",
-	    	        url: "/kkeshuser/saveuser",
-	    	        data: JSON.stringify(signInUpJson),
+	    	        url: "/kkesh/registerpatient",
+	    	        data: JSON.stringify(patientReqDTO),
 	    	        dataType: 'json',
 	    	        cache: false,
 	    	        timeout: 600000,
 	    	        success: function (data) {
-						alert('success')
+	    	        	debugger;
+	    	        	patientReqDTO     = data;
+	    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+data.emailAddress;
 	
 	    	        },
 	    	        error: function (e) {
+	    	        	debugger;
 						  console.log("ERROR : ", e);
 	
 	    	        }

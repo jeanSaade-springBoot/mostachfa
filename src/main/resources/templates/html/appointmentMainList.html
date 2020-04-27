@@ -62,7 +62,12 @@
                         <div class="col-xl-6 col-lg-7">
                         </div>
                         <div class="col-xl-4 col-lg-4 d-none d-lg-block">
-                            <div class="Appointment">
+                            <div class="Appointment"  id="add-appointment" style="display: none;">
+                                <div class="book_btn d-none d-lg-block">
+                                    <a id="open-appointment-popup" class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                </div>
+                            </div>
+                            <div class="Appointment" id="add-doctor" style="display: none;">
                                 <div class="book_btn d-none d-lg-block">
                                     <a class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
                                 </div>
@@ -129,7 +134,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <form >
                     <div class="row">
 						<div class="col-xl-12">
-                           <textarea  rows="15" cols="50" name="comment" form="usrform" placeholder="اشرح الأعراض التي تعاني منها..."></textarea>
+                           <textarea  rows="15" cols="50" id="description" name="comment" form="usrform" placeholder="اشرح الأعراض التي تعاني منها..." required></textarea>
                         </div>
                         <div class="col-xl-12">
                             <button type="submit" class="boxed-btn3">إرسال</button>
@@ -174,9 +179,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script  src="/js/jqwidgets/jqxlistbox.js"></script>
      <script  src="/js/jqwidgets/jqxwindow.js"></script>
     <script>
+    var signInResponseDTO2 ='';
     $(document).ready(function () {
 	    var data = generatedata(200);
-	    var signInResponseDTO2 = "[[${signInResponseDTO}]]";
+	    debugger;
+	     signInResponseDTO2 = JSON.parse("[[${signInResponseDTO}]]".replace(/&quot;/g,'"'));
+	     if (signInResponseDTO2.isPatient)
+	     { $('#add-appointment').show();}
+	      else if(signInResponseDTO2.isAdmin)
+	        { $('#add-doctor').show(); 
+	        }
+	     
 	    var source =
 	    {
 	        localdata: data,
@@ -244,7 +257,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	         }
 	        ]
 	    });
-	    
+	    if (signInResponseDTO2.isPatient)
+	     {$("#grid").jqxGrid('hidecolumn', 'Assign');}
 	   
 	    // initialize the popup window and buttons.
         $("#popupWindow").jqxWindow({
@@ -275,7 +289,57 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	        console.log("row :" + event.args.row)
 	        $('#popupWindow').jqxWindow('close');
 	   		 });
+ 	   
+ 	   
+ 	  $('#open-appointment-popup').magnificPopup({
+    	  type:'inline',
+    	  callbacks: {
+    	    open: function() {
+    	      $.magnificPopup.instance.close = function () {
+    	    	  $('#appointment-form').parsley().reset();
+    	    	  $(':input','#appointment-form')
+    	    	    .not(':button, :submit, :reset, :hidden')
+    	    	    .val('')
+    	    	    .removeAttr('checked')
+    	    	    .removeAttr('selected');
+    	           $.magnificPopup.proto.close.call(this);
+    	      }; 
+    	    }
+    	  }
+    	});
+
+ 	   
     });
+   
+    $("#appointment-form").parsley().on('field:validated', function() {
+        var ok = $('.parsley-error').length === 0;
+        $('.bs-callout-info').toggleClass('hidden', !ok);
+        $('.bs-callout-warning').toggleClass('hidden', ok);
+      })
+      .on('form:submit', function() {
+    	 	 var appointmentReqDTO = {}
+    	 	appointmentReqDTO["description"] = $("#description").val();
+    	 	appointmentReqDTO["patientId"] = signInResponseDTO2.id;
+    	     $.ajax({
+    	        type: "POST",
+    	        contentType: "application/json",
+    	        url: "/kkesh/saveappointment",
+    	        data: JSON.stringify(appointmentReqDTO),
+    	        dataType: 'json',
+    	        cache: false,
+    	        timeout: 600000,
+    	        success: function (data,response) {
+    	        	debugger;
+    	        	signInResponseDTO     = data;
+    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+signInResponseDTO2.emailAddress;
+   			  },
+    	        error: function (e) {
+    	        	debugger;
+    	        	console.log(e);
+    	        }
+    	    });
+    	    
+      });
 	</script>
 </body>
 

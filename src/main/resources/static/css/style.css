@@ -3,6 +3,18 @@
   font-family: "Tajawal";
   src: url(../fonts/Tajawal-Regular.ttf);
 }
+.error-signin {
+    color: #B94A48;
+    background-color: #F2DEDE;
+    border: 1px solid #EED3D7;
+    padding: 1rem;
+}
+a.back {
+    float: left!important;
+    text-align: left!important;
+    left: 0 !important;
+    margin-right: 19rem;
+}
 .grid-title {
     text-align: center;
     font-weight: bolder;
@@ -476,7 +488,16 @@ body::-webkit-scrollbar-thumb, .contact-list::-webkit-scrollbar-thumb, .chat::-w
     background-position: center center;
 	}
 }
-@media (min-width: 1300px) and (max-width: 1500px) {
+@media (max-width: 1500px) and (min-width: 1400px)
+{
+	.slider_area .single_slider {
+    height: 596px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+}
+
+@media (min-width: 1300px) and (max-width: 1400px) {
     .wrap {
         margin-bottom: 2vh;
         margin-top: 2vh;
