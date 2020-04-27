@@ -239,15 +239,6 @@ public class kkeshController{
 	 *End Appointment section
 	 */
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*
 	 *Begin redirection section
 	 */
@@ -255,7 +246,6 @@ public class kkeshController{
 	@RequestMapping( value =  "/secureforward")
     public ModelAndView mainPage(ModelMap model,@RequestParam(name = "pageEnum") String pageEnum,@RequestParam(name = "emailAddress") String emailAddress)
     {
-		model.addAttribute("kkeshReqObjectDTO", "123");
 		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
 		String redirectUrl = redirectEnum.label;
 		if(!isBlank(emailAddress))
