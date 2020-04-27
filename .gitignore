@@ -18,3 +18,9 @@ target
 *.iml
 *.properties
 *.properties
+<<<<<<< Updated upstream
+=======
+src/main/resources/application.properties
+src/main/resources/application.properties
+*.properties
+>>>>>>> Stashed changes

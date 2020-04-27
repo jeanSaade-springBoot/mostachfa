@@ -33,7 +33,15 @@ import com.springframework.services.AppointmentTrackService;
 import com.springframework.services.DoctorService;
 import com.springframework.services.UserService;
 import com.springframework.enums.RedirectPagesEnum;
+<<<<<<< Updated upstream
 
+=======
+import com.springframework.enums.ResponseCodeEnum;
+
+import static org.apache.commons.lang.StringUtils.isBlank;
+import com.springframework.utils.UserUtils;
+import com.google.gson.Gson;
+>>>>>>> Stashed changes
 @RestController
 @RequestMapping(value = "kkesh")
 public class kkeshController{
@@ -126,6 +134,7 @@ public class kkeshController{
 	@RequestMapping(value = "/redirect", method = RequestMethod.POST)
     public KKeshReqObjectDTO redirectTotarget(@RequestBody KKeshReqObjectDTO kkeshReqObjectDTO,final RedirectAttributes redirectAttributes)
     {
+<<<<<<< Updated upstream
       	String patientId = kkeshReqObjectDTO.getPatientId();
       	RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(kkeshReqObjectDTO.getRedirectEnum());
       	String redirectUrl = redirectEnum.label;
@@ -133,6 +142,18 @@ public class kkeshController{
       	ModelMap model = new ModelMap();
       	model.addAttribute("kkeshReqObjectDTO", kkeshReqObjectDTO);
       	return kkeshReqObjectDTO;
+=======
+		model.addAttribute("kkeshReqObjectDTO", "123");
+		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
+		String redirectUrl = redirectEnum.label;
+		if(!isBlank(emailAddress))
+		{
+			Gson gson = new Gson();
+			SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
+			model.addAttribute("signInResponseDTO", gson.toJson(signInResponseDTO));
+		}
+    	return new ModelAndView(redirectUrl, model);
+>>>>>>> Stashed changes
     }
 
 	
