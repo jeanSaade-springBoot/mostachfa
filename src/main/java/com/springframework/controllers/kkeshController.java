@@ -250,9 +250,9 @@ public class kkeshController{
 		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
 		
 		if(signInResponseDTO.isAdmin)
-			appointmentLst = appointmentService.getAppointmentPatientList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
+			appointmentLst = appointmentService.getAppointmentAdminList();
 		if(signInResponseDTO.isDoctor)
-			appointmentLst = appointmentService.getAppointmentPatientList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
+			appointmentLst = appointmentService.getAppointmentDoctorList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
 		if(signInResponseDTO.isPatient)
 			appointmentLst = appointmentService.getAppointmentPatientList(signInResponseDTO.getId(),AppointmentStatusEnum.PENDING);
 		
