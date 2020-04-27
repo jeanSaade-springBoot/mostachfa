@@ -36,8 +36,8 @@ public class UserUtils {
 		        .fName(user.getFName())
 		        .lName(user.getLName())
 		        .emailAddress(user.getEmailAddress())
-		        .isAdmin(false)
-		        .isDoctor(true)
+		        .isAdmin(true)
+		        .isDoctor(false)
 		        .isPatient(false)
 		        .build();
 		return signInResponseDTO;
