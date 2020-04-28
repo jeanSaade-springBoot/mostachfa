@@ -1,0 +1,361 @@
+<html >
+ <html class="no-js" lang="zxx" dir="rtl" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>kkesh</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+   <!--  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico"> -->
+     <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/parsley.css"> 
+    <link rel="stylesheet" href="/css/jqwidgets/jqx.base.css" type="text/css" />
+        <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6 ">
+                        </div>
+                        <div class="col-xl-6 col-md-6">
+                            <div class="short_contact_list">
+                                <ul>
+                                  <li><a class="font_arabic"  href="/kkesh/secureforward?pageEnum=LOGIN&emailAddress=">تسجيل خروج</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div id="sticky-header" class="main-header-area">
+                <div class="container">
+               <div class="row align-items-center">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="/img/logo.png" alt=""  style="width:200px">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-7">
+                        </div>
+                        <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                            <div class="Appointment"  id="add-appointment" style="display: none;">
+                                <div class="book_btn d-none d-lg-block">
+                                    <a id="open-appointment-popup" class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                </div>
+                            </div>
+                            <div class="Appointment" id="add-doctor" style="display: none;">
+                                <div class="book_btn d-none d-lg-block">
+                                    <a class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+    <!-- grid section start -->
+   <div class="grid-body">
+	    <div class="col-xl-12">
+		    <div class="grid-container">
+		             <div class="row align-items-center">
+	                        <div class="col-xl-4 col-lg-4">
+	                        </div>
+	                        <div class="col-xl-4 col-lg-4">
+	                       		 <div class="grid-title font_arabic">قائمة الاستشارات</div>
+	                        </div>
+	                        <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+	                        </div>
+	                   </div>
+		   		      <div id="grid"></div>
+		   		      <div id="popupWindow">
+		   		       <div id="window">
+		                    <span id="captureContainer" >قائمة الأطباء</span>
+		                </div>
+		   		       	<div class="doctor-grid-container">
+		   		       		<div id="doctor-grid"></div>
+		   		       	</div>
+		   		      </div>
+		    </div>
+	    </div>
+    </div>
+    <!-- grid section end -->
+    <!-- footer start -->
+    <footer class="footer">
+          <div class="copy-right_text">
+                <div class="container">
+                    <div class="footer_border"></div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <p class="copy_right text-center">
+                             
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+<!-- footer end  -->
+   
+    <!-- form itself end-->
+    <form id="appointment-form" class="white-popup-block mfp-hide popup-windows">
+        <div class="popup_box ">
+            <div class="popup_inner font_arabic">
+                 <h3 class="font_arabic">تقديم استشارة طبية</h3>
+                <form >
+                    <div class="row">
+						<div class="col-xl-12">
+                           <textarea  rows="15" cols="50" id="description" name="comment" form="usrform" placeholder="اشرح الأعراض التي تعاني منها..." required></textarea>
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed-btn3">إرسال</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    <!-- form itself end -->
+    <!-- JS here -->
+    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/ajax-form.js"></script>
+    <script src="/js/waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/scrollIt.js"></script>
+    <script src="/js/jquery.scrollUp.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/nice-select.min.js"></script>
+    <script src="/js/jquery.slicknav.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/gijgo.min.js"></script>
+    <script src="/js/parsley.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script  src="/js/jqwidgets/jqxcore.js"></script>
+    <script  src="/js/jqwidgets/jqxdata.js"></script> 
+    <script  src="/js/jqwidgets/jqxbuttons.js"></script>
+    <script  src="/js/jqwidgets/jqxscrollbar.js"></script>
+    <script  src="/js/jqwidgets/jqxmenu.js"></script>
+    <script  src="/js/jqwidgets/jqxgrid.js"></script>
+    <script  src="/js/jqwidgets/jqxgrid.pager.js"></script>
+    <script  src="/js/jqwidgets/jqxgrid.selection.js"></script> 
+    <script  src="/js/jqwidgets/jqxnumberinput.js"></script>
+    <script  src="/js/jqwidgets/generatedata.js"></script>
+    <script  src="/js/jqwidgets/jqxdropdownlist.js"></script>
+    <script  src="/js/jqwidgets/jqxlistbox.js"></script>
+     <script  src="/js/jqwidgets/jqxwindow.js"></script>
+    <script>
+    var signInResponseDTO2 ='';
+    $(document).ready(function () {
+    	
+	    debugger;
+	     signInResponseDTO2 = JSON.parse("[[${signInResponseDTO}]]".replace(/&quot;/g,'"'));
+	     if (signInResponseDTO2.isPatient)
+	     { $('#add-appointment').show();}
+	      else if(signInResponseDTO2.isAdmin)
+	        { $('#add-doctor').show(); 
+	        }
+	     var settings = {
+   			  "url": "/kkesh/getappointmentlstbyuser/"+signInResponseDTO2.emailAddress,
+   			  "method": "GET",
+   			  "timeout": 0,
+   			};
+
+   			$.ajax(settings).done(function (response) {
+   				console.log(response)
+   				data=response;
+   			  var source =
+   		    {
+   		        localdata: data,
+   		        datatype: "array",
+   		        datafields:
+   		        [
+   		            { name: 'firstname', type: 'string' },
+   		            { name: 'description', type: 'string' },
+   		            { name: 'productname', type: 'string' },
+   		            { name: 'creationDate', type: 'string' },
+   		            { name: 'status', type: 'string' },
+   		            { name: 'id', type: 'string' },
+   		            { name: 'patientId', type: 'string' },
+   		        ],
+   		        updaterow: function (rowid, rowdata, commit) {
+   		            // synchronize with the server - send update command
+   		            // call commit with parameter true if the synchronization with the server is successful 
+   		            // and with parameter false if the synchronization failder.
+   		            commit(true);
+   		        }
+   		    };
+   		    var dataAdapter = new $.jqx.dataAdapter(source);
+   		    // initialize jqxGrid
+   		    $("#grid").jqxGrid(
+   		    {
+   		        width: '100%',
+   		        height:'60%',
+   		        source: dataAdapter,
+   		        selectionmode: 'none',
+   		        pageable: true,
+   		        rtl:true,
+   		        columns: [
+   		          { text: 'Patient Name', datafield: 'firstname', width: 200 },
+   		          { text: 'description', datafield: 'description' },
+   		          { text: 'creation date', datafield: 'creationDate', width: 200 },
+   		          { text: 'status', datafield: 'status', width: 90, cellsalign: 'right' },
+   			      { text: '', datafield: 'Assign',width: 88, columntype: 'button', cellsrenderer: function () {
+   			             return "Assign,fa fa-user,assign-button,88%";
+   			          }, buttonclick: function (row) {
+   			             // open the popup window when the user clicks a button.
+   			        	     editrow = row;
+   				             var offset = $("#grid").offset();
+   				             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 80, y: parseInt(offset.top) - 20 } });
+   				
+   				             // get the clicked row's data and initialize the input fields.
+   				             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
+   				          
+   				             // show the popup window.
+   				             $("#popupWindow").jqxWindow('open');
+   			         }
+   			         },
+   		          { text: '', datafield: 'View',width: 80, columntype: 'button', cellsrenderer: function () {
+   		             return "View,fa fa-eye,view-button,80%";
+   		          }, buttonclick: function (row) {
+   		        	  debugger;
+   		             // open the popup window when the user clicks a button.
+   		             editrow = row;
+   		             var offset = $("#grid").offset();
+   		             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) } });
+   		
+   		             // get the clicked row's data and initialize the input fields.
+   		             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
+   		             $("#firstName").val(dataRecord.firstname);
+   		             // show the popup window.
+   		             $("#popupWindow").jqxWindow('open');
+   		         }
+   		         }
+   		        ]
+   		    });
+	   		 if (signInResponseDTO2.isPatient)
+		     {$("#grid").jqxGrid('hidecolumn', 'Assign');}
+		   
+   			});
+   	
+	  
+	    
+	    // initialize the popup window and buttons.
+        $("#popupWindow").jqxWindow({
+            width: 1250, height:'70%', rtl: true,resizable: false,  isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01           
+        });
+
+        $("#popupWindow").on('open', function () {
+
+	    $("#doctor-grid").jqxGrid(
+           		    {
+           		        width: '100%',
+           		        height:'100%',
+           		        source: dataAdapter,
+           		        pageable: true,
+           		        rtl:true,
+           		        columns: [
+           		          { text: 'Patient Name', datafield: 'firstname', width: 200 },
+           		          { text: 'description', datafield: 'productname' },
+           		          { text: 'creation date', datafield: 'quantity', width: 90, cellsalign: 'right' },
+           		          { text: 'status', datafield: 'price', width: 90, cellsalign: 'right', cellsformat: 'c2' }
+           		        ]
+           		    });
+	      $("#doctor-grid").jqxGrid('clearselection');
+        });
+        
+ 	   $("#doctor-grid").bind('rowselect', function (event) {
+ 		    var row = event.args.rowindex;
+	        console.log("row :" + event.args.row)
+	        $('#popupWindow').jqxWindow('close');
+	   		 });
+ 	   
+ 	   
+ 	  $('#open-appointment-popup').magnificPopup({
+    	  type:'inline',
+    	  callbacks: {
+    	    open: function() {
+    	      $.magnificPopup.instance.close = function () {
+    	    	  $('#appointment-form').parsley().reset();
+    	    	  $(':input','#appointment-form')
+    	    	    .not(':button, :submit, :reset, :hidden')
+    	    	    .val('')
+    	    	    .removeAttr('checked')
+    	    	    .removeAttr('selected');
+    	           $.magnificPopup.proto.close.call(this);
+    	      }; 
+    	    }
+    	  }
+    	});
+
+ 	   
+    });
+   
+    $("#appointment-form").parsley().on('field:validated', function() {
+        var ok = $('.parsley-error').length === 0;
+        $('.bs-callout-info').toggleClass('hidden', !ok);
+        $('.bs-callout-warning').toggleClass('hidden', ok);
+      })
+      .on('form:submit', function() {
+    	 	 var appointmentReqDTO = {}
+    	 	appointmentReqDTO["description"] = $("#description").val();
+    	 	appointmentReqDTO["patientId"] = signInResponseDTO2.id;
+    	     $.ajax({
+    	        type: "PUT",
+    	        contentType: "application/json",
+    	        url: "/kkesh/saveappointment",
+    	        data: JSON.stringify(appointmentReqDTO),
+    	        dataType: 'json',
+    	        cache: false,
+    	        timeout: 600000,
+    	        success: function (data,response) {
+    	        	debugger;
+    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+signInResponseDTO2.emailAddress;
+    	        	//Swal.fire('تم تقديم طلبك. يرجى الانتظار رد الطبيب ')
+   			  },
+    	        error: function (e) {
+    	        	debugger;
+    	        	alert(e)
+    	        	console.log(e);
+    	        }
+    	    });
+    	    
+      });
+	</script>
+</body>
+
+</html>

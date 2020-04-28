@@ -439,7 +439,44 @@ body::-webkit-scrollbar-thumb, .contact-list::-webkit-scrollbar-thumb, .chat::-w
 }
 
 /* ------ MEDIA QUERIES ------ */
-@media (min-width: 1200px) {
+@media (min-width: 2000px) {
+    .wrap {
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+        height: calc(79vh - 25px);
+    }
+    .slider_area .single_slider {
+    height: 811px;
+    background-repeat: no-repeat;
+    background-position: center center;
+	}
+}
+@media (min-width: 1900px)  and (max-width: 2000px) {
+    .wrap {
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+        height: calc(79vh - 25px);
+    }
+    .slider_area .single_slider {
+    height: 748px;
+    background-repeat: no-repeat;
+    background-position: center center;
+	}
+}
+@media (min-width: 1700px) and (max-width: 1900px){
+    .wrap {
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+        height: calc(79vh - 25px);
+    }
+    .slider_area .single_slider {
+    height: 644px;
+    background-repeat: no-repeat;
+    background-position: center center;
+	}
+}
+
+@media (min-width: 1500px) and (max-width: 1700px) {
     .wrap {
         margin-bottom: 2vh;
         margin-top: 2vh;
@@ -451,9 +488,6 @@ body::-webkit-scrollbar-thumb, .contact-list::-webkit-scrollbar-thumb, .chat::-w
     background-position: center center;
 	}
 }
-<<<<<<< Updated upstream
-
-=======
 @media (max-width: 1500px) and (min-width: 1400px)
 {
 	.slider_area .single_slider {
@@ -487,7 +521,6 @@ body::-webkit-scrollbar-thumb, .contact-list::-webkit-scrollbar-thumb, .chat::-w
     background-position: center center;
 	}
 }     
->>>>>>> Stashed changes
 @media (max-width: 600px) {
     .wrap {
         height: calc(100vh - 0.4em);

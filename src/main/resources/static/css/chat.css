@@ -4319,7 +4319,7 @@ html.menu-opened body {
 }
 .chat-window .chat-scroll {
 	min-height: 300px;
-    max-height: calc(100vh - 305px);
+    max-height: calc(100vh - 310px);
     overflow-y: auto;
 }
 .chat-cont-left .chat-users-list {
@@ -6375,7 +6375,9 @@ span.consultaion-meta-id {
 	border-color: #20c0f3;
 	color: #fff;
 }
-
+.dmi-entry-content{
+	padding-top:2rem;
+}
 
 /*-----------------
 	42. Loader
@@ -6439,6 +6441,50 @@ span.consultaion-meta-id {
 	43. Responsive
 -----------------------*/
 
+@media (min-width:576px) {
+    .content {
+        max-width: 540px
+    }
+}
+
+@media (min-width:768px) {
+    .content {
+        max-width: 720px
+    }
+}
+
+@media (min-width:992px) {
+    .content {
+        max-width: 960px
+    }
+}
+
+@media (min-width:1200px)  {
+    .content {
+        max-width: 1510px
+    }
+}
+@media (min-width:1200px) and (max-width:1400px){
+    .content {
+        max-width: 1360px;
+        min-height:520px
+    }
+    .chat-window .chat-scroll {
+	min-height: 280px;
+    max-height: calc(100vh - 285px);
+    overflow-y: auto;
+}
+}
+@media (min-width:1400px) and (max-width:1600px){
+    .content {
+        max-width: 1565px;
+    }
+}
+@media (min-width:1600px) and (max-width:1800px){
+    .content {
+        max-width: 1700px
+    }
+}
 @media only screen and (min-width:768px) {
 	.avatar-xxl {
 		width: 8rem;

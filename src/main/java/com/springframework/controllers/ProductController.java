@@ -33,16 +33,16 @@ public class ProductController {
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-
+/*
     @RequestMapping("/")
     public String redirToList(){
         return "redirect:/product/list";
     }
-
+*/
     @RequestMapping({"/product/list", "/product"})
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAll());
-        return "html/kkeshAdminPanel";
+        return "html/xxxxx";
     }
 
     @RequestMapping("/product/show/{id}")

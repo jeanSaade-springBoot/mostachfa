@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor 
 @AllArgsConstructor
-public class DoctorReqDTO {
+public class AdminReqDTO {
     private String firstName;
 	private String fatherName;
     private String lastName;
-    private String doctorIdNumber;
     String emailAddress;
     String password;
 }

@@ -2,10 +2,9 @@ package com.springframework.enums;
 
 public enum RedirectPagesEnum 
 {
-	    LOGIN("/html/kkeshLogin"),
-	    REGISTER("/html/kkeshLogin"),
-	    CHATTING("/html/CHATTING"),
-	    APPOINTMENTDEATIL("/html/appointmentDetail");
+	    LOGIN("/html/login"),
+	    APPOINTMENT_MAIN_LIST("/html/appointmentMainList"),
+	    MAIN_DETAILS("/html/mainDetails");
 	
 	public final String label;
 	 
