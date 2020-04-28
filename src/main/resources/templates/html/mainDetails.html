@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/parsley.css"> 
     <link rel="stylesheet" href="/css/chat.css">
-    
+    <link rel="stylesheet" href="/css/sweetalert2.min.css"> 
         <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -42,7 +42,7 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                   <li><a class="font_arabic"  href="/kkesh/secureforward/LOGIN/null">تسجيل خروج</a></li>
+                                   <li><a class="font_arabic"  href="/kkesh/secureforward/LOGIN/null/null">تسجيل خروج</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -100,15 +100,15 @@
 											<div class="input-group-prepend">
 												<i class="fa fa-search"></i>
 											</div>
-											<input type="text" class="form-control" placeholder="Search">
+											<input type="text" class="form-control font_arabic" placeholder="بحث...">
 										</div>
 									</form>
 									<div class="chat-users-list">
-										<div class="chat-scroll">
+													<div class="chat-scroll" id="for-doctor" style="display:none;">
 											<a href="javascript:void(0);" class="media">
 													<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Ruby Perrin</div>
+														<div class="user-name font_arabic">عمار آل_سعود</div>
 														<div class="user-last-chat font_arabic">ضغط في الرأس و شعور بي دوران و اغتراب لي فقدان الوعي الانزعاج من الأصوات وقت الشعور بي الام الرأس و كان الصوت في داخل الرأس</div>
 													</div>
 													<div>
@@ -118,9 +118,9 @@
 												</div>
 											</a>
 											<a href="javascript:void(0);" class="media read-chat active">
-													<div class="media-body">
+													<div class="media-body" style=" text-align: right;">
 													<div>
-														<div class="user-name">Dr. Darren Elder</div>
+														<div class="user-name font_arabic">عالية آل الشيخ</div>
 														<div class="user-last-chat font_arabic"> اسال عن الصداع حول العين والجزء الخلفي من الرأس بعد عملية الليزك بأسبوع؟ هل هو طبيعي ام يحتاج فحص طبي للعين؟ وايضا عنلي يتطلب الاستخدام الكثير للهاتف والكمبيوتر فهل يؤثر ذلك سلبا ع العلملية واضعاف البصر مع شكري ومودتي</div>
 													</div>
 													<div>
@@ -131,7 +131,7 @@
 											<a href="javascript:void(0);" class="media">
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Deborah Angel</div>
+														<div class="user-name font_arabic">ميسم الفاخري</div>
 														<div class="user-last-chat font_arabic">اعاني من الم لا يطاق</div>
 													</div>
 													<div>
@@ -143,7 +143,7 @@
 											<a href="javascript:void(0);" class="media read-chat">
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Sofia Brient</div>
+														<div class="user-name font_arabic">سيف حجار العمري</div>
 														<div class="user-last-chat font_arabic">مشاكل في النوم لا استطيع النوم لا بعد تعب شديد او بعد نشاط مرهق جدا حتى لو أتت ساعات النوم</div>
 													</div>
 													<div>
@@ -154,8 +154,8 @@
 											<a href="javascript:void(0);" class="media read-chat">
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Marvin Campbell</div>
-														<div class="user-last-chat">Yesterday i completed the task</div>
+														<div class="user-name font_arabic">ماجد آل الشيخ</div>
+														<div class="user-last-chat">السلام عليكم عندي ضعف النظر حيث أنني لا أرى جيدا عن بعد...</div>
 													</div>
 													<div>
 														<div class="last-chat-time block">11:21 AM</div>
@@ -165,8 +165,8 @@
 											<a href="javascript:void(0);" class="media read-chat">
 													<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Katharine Berthold</div>
-														<div class="user-last-chat">What is the major functionality?</div>
+														<div class="user-name font_arabic">ديمه آل سليم</div>
+														<div class="user-last-chat">أنا أعاني أحيانا بالحكة في عيوني وتدمعان قليلا أحيانا</div>
 													</div>
 													<div>
 														<div class="last-chat-time block">10:05 AM</div>
@@ -176,8 +176,8 @@
 											<a href="javascript:void(0);" class="media read-chat">
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Linda Tobin</div>
-														<div class="user-last-chat">This has allowed me to showcase not only my technical skills</div>
+														<div class="user-name font_arabic">أحلام السديري</div>
+														<div class="user-last-chat">يوجد دموع بالعين مع عماص أبيض اللون وأحمرار فى العينين والأحساس بجسم غريب فى العنين </div>
 													</div>
 													<div>
 														<div class="last-chat-time block">Yesterday</div>
@@ -187,8 +187,8 @@
 											<a href="javascript:void(0);" class="media read-chat">
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Paul Richard</div>
-														<div class="user-last-chat">Let's talk briefly in the evening. </div>
+														<div class="user-name font_arabic">خلود آل حميد</div>
+														<div class="user-last-chat">انا عندي عمي الالوان مش بقدر اشوف اي ارقام فاختبار عمي الالوان محتاج حل</div>
 													</div>
 													<div>
 														<div class="last-chat-time block">Sunday</div>
@@ -196,15 +196,10 @@
 												</div>
 											</a>
 											<a href="javascript:void(0);" class="media read-chat">
-												<div class="media-img-wrap">
-													<div class="avatar avatar-online">
-														<img src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image" class="avatar-img rounded-circle">
-													</div>
-												</div>
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. John Gibbs </div>
-														<div class="user-last-chat">Do you have any collections? If so, what of?</div>
+														<div class="user-name font_arabic">عساف آل الدويش</div>
+														<div class="user-last-chat">سلام عليكم دكتور عيون ممكن عندي بنت عنده حول ف عينه اليسار كتب لدكتور نظاره رافضه تلبس النظاره عمره سنه وشهرين كيف اسوي هل اروح خاص اسوي له عمليه او اتركه لين تكبر بس هذا شي ليؤثر ع نظره ؟سويت له عدسه صينه هل هي زينه او لا ؟</div>
 													</div>
 													<div>
 														<div class="last-chat-time block">Saturday</div>
@@ -212,18 +207,61 @@
 												</div>
 											</a>
 											<a href="javascript:void(0);" class="media read-chat">
-												<div class="media-img-wrap">
-													<div class="avatar avatar-away">
-														<img src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image" class="avatar-img rounded-circle">
-													</div>
-												</div>
 												<div class="media-body">
 													<div>
-														<div class="user-name">Dr. Olga Barlow</div>
-														<div class="user-last-chat">Connect the two modules with in 1 day.</div>
+														<div class="user-name font_arabic">أمينة آل حثلين</div>
+														<div class="user-last-chat">السلام عليكم ورحمة الله منذ أسبوعين حدث جحوظ فى العين اليسرى وطلب الطبيب تحليل الغدة الدرقية والكلسترول واشعة على العين والمخ ووجد أنها طبيعية ثم قاس ضغط العين</div>
 													</div>
 													<div>
 														<div class="last-chat-time block">Friday</div>
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="chat-scroll" id="for-patient"  style="display:none;">
+											<a href="javascript:void(0);" class="media">
+													<div class="media-body">
+													<div>
+														<div class="user-name font_arabic">د. رودينا</div>
+														<div class="user-last-chat font_arabic">ضغط في الرأس و شعور بي دوران و اغتراب لي فقدان الوعي الانزعاج من الأصوات وقت الشعور بي الام الرأس و كان الصوت في داخل الرأس</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">2 min</div>
+														<div class="badge badge-success badge-pill">15</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat active">
+													<div class="media-body" style=" text-align: right;">
+													<div>
+														<div class="user-name font_arabic">د. إيمان</div>
+														<div class="user-last-chat font_arabic"> اسال عن الصداع حول العين والجزء الخلفي من الرأس بعد عملية الليزك بأسبوع؟ هل هو طبيعي ام يحتاج فحص طبي للعين؟ وايضا عنلي يتطلب الاستخدام الكثير للهاتف والكمبيوتر فهل يؤثر ذلك سلبا ع العلملية واضعاف البصر مع شكري ومودتي</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">8:01 PM</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media">
+												<div class="media-body">
+													<div>
+														<div class="user-name font_arabic">د. منصور</div>
+														<div class="user-last-chat font_arabic">اعاني من الم لا يطاق</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">7:30 PM</div>
+														<div class="badge badge-success badge-pill">3</div>
+													</div>
+												</div>
+											</a>
+											<a href="javascript:void(0);" class="media read-chat">
+												<div class="media-body">
+													<div>
+														<div class="user-name font_arabic">د. عمار</div>
+														<div class="user-last-chat font_arabic">مشاكل في النوم لا استطيع النوم لا بعد تعب شديد او بعد نشاط مرهق جدا حتى لو أتت ساعات النوم</div>
+													</div>
+													<div>
+														<div class="last-chat-time block">6:59 PM</div>
 													</div>
 												</div>
 											</a>
@@ -248,33 +286,42 @@
 												<span class="consultaion-meta-id"> +966 54 xxxxxxx </span>
 											 </div>
 											 <div class="consultaion-meta-date">رقم الملف الطبي : 12345</div>
-							            <div class="dmi-separator"></div>
-										<div class="col-xl-12" style="padding-right: 0;">
+							                 <div class="dmi-separator"></div>
+										 <div class="col-xl-12" style="padding: 0;     display: inline-table;">
+											
+											 
+											  <a id="returnAppointmentToAdmin" style="display:none;" class="btn btn-sm bg-danger-light">
+													<i class="fa fa-undo"></i> إعادة الإستشارة إلى مسؤل النظام
+											 </a>
+											 <a id="assignDoctor" style="display:none;" class="btn btn-sm bg-primary-light">
+												<i class="fa fa-user"></i> تحويل الإستشارة
+									      	</a>
+											  <a id="closeAppointment" style="display:none;" class="btn btn-sm bg-default-light">
+													<i class="fa fa-close"></i> إغلاق الإستشارة
+											 </a>
+											  	 <a id="acceptAppointment" style="display:none;" class="btn btn-sm bg-success-light">
+													<i class="fa fa-check"></i> إستلام الإستشارة
+											 </a> 
+										 </div>
+										   <div id="popupWindow">
+								   		       <div id="window">
+								                    <span id="captureContainer" >قائمة الأطباء</span>
+								                </div>
+								   		       	<div class="doctor-grid-container">
+								   		       		<div id="doctor-grid"></div>
+								   		       	</div>
+								   		      </div>
+										 	<div class="col-xl-12" style="padding-right: 0;">
 												<div class="entry-meta dmi-mb-1x">
 													<div class="consultaion-meta"> 
-														<span class="consultaion-meta-date"> 2020-03-30 </span> | 
-														<span class="consultaion-meta-id"> استشارة رقم: 312369 </span>
+														<span class="consultaion-meta-date" id="appointment_creationDate"></span> | 
+														<span class="consultaion-meta-id">  استشارة رقم: </span><span class="consultaion-meta-id" id="appointment_id"></span>
 													 </div>
 												 </div>
 												 
 											 </div>
-											 <div class="col-xl-12" style="padding: 0;     display: inline-table;">
-											
-											 
-											  <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
-													<i class="fa fa-undo"></i> إعادة الإستشارة إلى مسؤل النظام
-											 </a>
-											 <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-												<i class="fa fa-user"></i> تحويل الإستشارة
-									      	</a>
-											  <a href="javascript:void(0);" class="btn btn-sm bg-default-light">
-													<i class="fa fa-close"></i> إغلاق الإستشارة
-											 </a>
-											  	 <a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-													<i class="fa fa-check"></i> إستلام الإستشارة
-											 </a> 
-										 </div>
-										 <div class="dmi-entry-content"><h3 class="dmi-title font_arabic" itemprop="name"> اسال عن الصداع حول العين والجزء الخلفي من الرأس بعد عملية الليزك بأسبوع؟ هل هو طبيعي ام يحتاج فحص طبي للعين؟ وايضا عنلي يتطلب الاستخدام الكثير للهاتف والكمبيوتر فهل يؤثر ذلك سلبا ع العلملية واضعاف البصر مع شكري ومودتي</h3>
+										
+										 <div class="dmi-entry-content"><h3 id="apointment-description" class="dmi-title font_arabic" itemprop="name"></h3>
 										</div>
 							            </div>
 							        </div>
@@ -286,12 +333,12 @@
 										<div class="media">
 											<div class="media-img-wrap">
 												<div class="avatar avatar-online">
-														<div class="chat-circle blue-color">DE</div>
+														<div class="chat-circle blue-color font_arabic">إ</div>
 												<!-- 	<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle"> -->
 												</div>
 											</div>
-											<div class="media-body">
-												<div class="user-name">Dr. Darren Elder</div>
+											<div class="media-body" style=" text-align: right;">
+												<div class="user-name font_arabic">د. إيمان</div>
 												<div class="user-status">online</div>
 											</div>
 										</div>
@@ -310,28 +357,11 @@
 									<div class="chat-body">
 										<div class="chat-scroll">
 											<ul class="list-unstyled">
-												<li class="media sent">
-													<div class="media-body">
-														<div class="msg-box">
-															<div>
-																<p>Hello. What can I do for you?</p>
-																<ul class="chat-msg-info">
-																	<li>
-																		<div class="chat-time">
-																			<span>8:30 AM</span>
-																		</div>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
 												<li class="media received">
 													<div class="media-body">
 														<div class="msg-box">
 															<div>
-																<p>I'm just looking around.</p>
-																<p>Will you tell me something about yourself?</p>
+																<p>صباح الخير. كيف حالك اليوم؟</p>
 																<ul class="chat-msg-info">
 																	<li>
 																		<div class="chat-time">
@@ -341,37 +371,13 @@
 																</ul>
 															</div>
 														</div>
-														<div class="msg-box">
-															<div>
-																<p>Are you there? That time!</p>
-																<ul class="chat-msg-info">
-																	<li>
-																		<div class="chat-time">
-																			<span>8:40 AM</span>
-																		</div>
-																	</li>
-																</ul>
-															</div>
-														</div>
 													</div>
 												</li>
 												<li class="media sent">
 													<div class="media-body">
 														<div class="msg-box">
 															<div>
-																<p>Where?</p>
-																<ul class="chat-msg-info">
-																	<li>
-																		<div class="chat-time">
-																			<span>8:42 AM</span>
-																		</div>
-																	</li>
-																</ul>
-															</div>
-														</div>
-														<div class="msg-box">
-															<div>
-																<p>OK, my name is Limingqiang. I like singing, playing basketballand so on.</p>
+																<p>أنا بخير. شكرا لك. ماذا عنك؟</p>
 																<ul class="chat-msg-info">
 																	<li>
 																		<div class="chat-time">
@@ -387,9 +393,19 @@
 													<div class="media-body">
 														<div class="msg-box">
 															<div>
-																<p>You wait for notice.</p>
-																<p>Consectetuorem ipsum dolor sit?</p>
-																<p>Ok?</p>
+																<p>أنا بخير. إذن ما الذي تشعر به الآن</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>8:55 PM</span>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+															<div class="msg-box">
+															<div>
+																<p>هل لا تزال لديك نفس الأعراض؟</p>
 																<ul class="chat-msg-info">
 																	<li>
 																		<div class="chat-time">
@@ -402,28 +418,11 @@
 													</div>
 												</li>
 												<li class="chat-date">Today</li>
-												<li class="media received">
-													<div class="media-body">
-														<div class="msg-box">
-															<div>
-																<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
-																<ul class="chat-msg-info">
-																	<li>
-																		<div class="chat-time">
-																			<span>10:17 AM</span>
-																		</div>
-																	</li>
-																	<li><a href="#">Edit</a></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</li>
 												<li class="media sent">
 													<div class="media-body">
 														<div class="msg-box">
 															<div>
-																<p>Lorem ipsum dollar sit</p>
+																<p>لا ولكن ما زلت أعاني من مشكلة في الرؤية</p>
 																<div class="chat-msg-actions dropdown">
 																	<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																		<i class="fe fe-elipsis-v"></i>
@@ -438,7 +437,22 @@
 																			<span>10:19 AM</span>
 																		</div>
 																	</li>
-																	<li><a href="#">Edit</a></li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</li>
+												<li class="media received">
+													<div class="media-body">
+														<div class="msg-box">
+															<div>
+																<p>يجب أن تمر من مكتبي من أجل فحصك</p>
+																<ul class="chat-msg-info">
+																	<li>
+																		<div class="chat-time">
+																			<span>10:17 AM</span>
+																		</div>
+																	</li>
 																</ul>
 															</div>
 														</div>
@@ -468,7 +482,7 @@
 													<input type="file">
 												</div>
 											</div>
-											<input type="text" class="input-msg-send form-control" placeholder="Type something">
+											<input type="text" class="input-msg-send form-control font_arabic" placeholder="اطبع شيئا">
 											<div class="input-group-append">
 												<button type="button" class="btn msg-send-btn">
 												<img src="/img/send.png" alt="" style="width:20;height: 20;margin-right: 0.1rem;">
@@ -533,22 +547,155 @@
     <script src="/js/vendor/jquery-1.12.4.min.js"></script>
     <script  src="/js/jqwidgets/jqxcore.js"></script>
     <script  src="/js/jqwidgets/jqxtabs.js"></script>
+    <script  src="/js/jqwidgets/jqxcore.js"></script>
+    <script  src="/js/jqwidgets/jqxdata.js"></script> 
+    <script  src="/js/jqwidgets/jqxbuttons.js"></script>
+    <script  src="/js/jqwidgets/jqxscrollbar.js"></script>
+    <script  src="/js/jqwidgets/jqxmenu.js"></script>
+    <script  src="/js/jqwidgets/jqxgrid.js"></script>
+    <script  src="/js/jqwidgets/jqxgrid.pager.js"></script>
+    <script  src="/js/jqwidgets/jqxgrid.selection.js"></script> 
+    <script  src="/js/jqwidgets/jqxnumberinput.js"></script>
+    <script  src="/js/jqwidgets/generatedata.js"></script>
+    <script  src="/js/jqwidgets/jqxdropdownlist.js"></script>
+    <script  src="/js/jqwidgets/jqxlistbox.js"></script>
+    <script  src="/js/jqwidgets/jqxwindow.js"></script>
+    <script src="/js/sweetalert2.min.js"></script>
+     
     <script>
     var signInResponseDTO2 ='';
+    var appointmentDetailsId ='';
+    debugger;
     $(document).ready(function () {
     	signInResponseDTO2 = JSON.parse("[[${signInResponseDTO}]]".replace(/&quot;/g,'"'));
+    	appointmentDetailsId = JSON.parse("[[${appointmentDetailsId}]]".replace(/&quot;/g,'"'));
 	     if (signInResponseDTO2.isPatient)
-	     { $('#add-appointment').show();}
+	     { $('#add-appointment').show();
+	       $('#for-patient').show(); 
+	     }
 	      else if(signInResponseDTO2.isAdmin)
-	        { $('#add-doctor').show(); 
+	        {   $('#add-doctor').show(); 
+		        $('#closeAppointment').show(); 
+		        $('#acceptAppointment').show(); 
+		        $('#assignDoctor').show(); 
+	        }
+	      else if(signInResponseDTO2.isDoctor)
+	        {   $('#closeAppointment').show(); 
+		        $('#acceptAppointment').show(); 
+		        $('#assignDoctor').show(); 
+		        $('#returnAppointmentToAdmin').show(); 
+		        $('#for-doctor').show(); 
 	        }
 	
+	     var settings = {
+	   			  "url": "/kkesh/getAppointmentbyid/"+appointmentDetailsId,
+	   			  "method": "GET",
+	   			  "timeout": 0,
+	   			};
+
+	   			$.ajax(settings).done(function (response) {
+	   				debugger;
+	   				console.log(response);
+	   			   $("#apointment-description").html(response.description);
+	   			   $("#appointment_id").html(response.id);
+	   			   $("#appointment_creationDate").html(response.creationDate);
+	   			 
+	   			});
+	     
         $('#jqxtabs').jqxTabs({ width: '100%', height: '100%',rtl:true,
             initTabContent: function (tab) {
                 
             }
         });
     });
+    
+    $('#assignDoctor').click(function(){
+    	  $("#popupWindow").jqxWindow({ position: { x:  200, y: 150 } });
+    	  $("#popupWindow").jqxWindow('open');
+    	});
+    // initialize the popup window and buttons.
+    $("#popupWindow").jqxWindow({
+        width: 450, height:'70%', rtl: true,resizable: false,  isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01           
+    });
+    $("#popupWindow").on('open', function () {
+    	var settings = {
+     			  "url": "/kkesh/getdoctors?name=",
+     			  "method": "GET",
+     			  "timeout": 0,
+     			};
+
+     			$.ajax(settings).done(function (response) {
+     				  doctordata = response
+     				  var doctorSource =
+     		   		    {
+     		   		        localdata: doctordata,
+     		   		        datatype: "array",
+     		   		        datafields:
+     		   		        [
+     		   		            { name: 'fname', type: 'string' },
+     		   		            { name: 'emailAddress', type: 'string' },
+     		   		            { name: 'lname', type: 'string' },
+     		   		            { name: 'creationDate', type: 'string' },
+     		   		            { name: 'status', type: 'string' },
+     		   		            { name: 'id', type: 'string' },
+     		   		            { name: 'patientId', type: 'string' },
+     		   		        ],
+     		   		        updaterow: function (rowid, rowdata, commit) {
+     		   		            // synchronize with the server - send update command
+     		   		            // call commit with parameter true if the synchronization with the server is successful 
+     		   		            // and with parameter false if the synchronization failder.
+     		   		            commit(true);
+     		   		        }
+     		   		    };
+     		   		    var doctorDataAdapter = new $.jqx.dataAdapter(doctorSource);
+     		   		    
+				        $("#doctor-grid").jqxGrid(
+			           		    {
+			           		        width: '100%',
+			           		        height:'100%',
+			           		        source: doctorDataAdapter,
+			           		        pageable: true,
+			           		        rtl:true,
+			           		        columns: [
+			           		          { text: 'اسم الطبيب', datafield: 'id', displayfield: 'fname', width: 200 },
+			           				  { text: 'عناوين البريد الإلكتروني', datafield: 'emailAddress' }
+			           		        ]
+			           		    });
+				      $("#doctor-grid").jqxGrid('clearselection');
+			        });
+    });
+    
+	   $("#doctor-grid").bind('rowselect', function (event) {
+		    var id = event.args.row.id;
+		    
+        $('#popupWindow').jqxWindow('close');
+        
+        debugger;
+	 	 var appointmentTrackReqDTO = {}
+	 	 appointmentTrackReqDTO["assignedBy"] = signInResponseDTO2.id;
+	 	 appointmentTrackReqDTO["doctorId"]   = id;
+	     appointmentTrackReqDTO["appointmentId"] = appointmentDetailsId;
+	 	 appointmentTrackReqDTO["isCurrent"]   = 'true';
+	 	 appointmentTrackReqDTO["memo"] = '';
+	 	 
+	     $.ajax({
+	        type: "POST",
+	        contentType: "application/json",
+	        url: "/kkesh/assignappointment",
+	        data: JSON.stringify(appointmentTrackReqDTO),
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data,response) {
+	        	Swal.fire("لقد تم تحويل الإستشارة بنجاح ");
+	        	
+			  },
+	        error: function (e) {
+	        	console.log()
+	        }
+	    });
+	  
+	 });
 	</script>
 </body>
 

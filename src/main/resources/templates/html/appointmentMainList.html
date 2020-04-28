@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/parsley.css"> 
     <link rel="stylesheet" href="/css/jqwidgets/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/sweetalert2.min.css"> 
         <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -42,7 +43,7 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                  <li><a class="font_arabic"  href="/kkesh/secureforward/LOGIN/null">تسجيل خروج</a></li>
+                                  <li><a class="font_arabic"  href="/kkesh/secureforward/LOGIN/null/null">تسجيل خروج</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -177,7 +178,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script  src="/js/jqwidgets/generatedata.js"></script>
     <script  src="/js/jqwidgets/jqxdropdownlist.js"></script>
     <script  src="/js/jqwidgets/jqxlistbox.js"></script>
-     <script  src="/js/jqwidgets/jqxwindow.js"></script>
+    <script  src="/js/jqwidgets/jqxwindow.js"></script>
+    <script src="/js/sweetalert2.min.js"></script>
+         
     <script>
     var signInResponseDTO2 ='';
     var appointmentId ='';
@@ -253,7 +256,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
    		          { text: '', datafield: 'View',width: 80, columntype: 'button', cellsrenderer: function () {
    		             return "View,fa fa-eye,view-button,80%";
    		          }, buttonclick: function (row) {
-   		        	window.location.href = "/kkesh/secureforward/MAIN_DETAILS/"+signInResponseDTO2.emailAddress;
+   		        	 editrow = row;
+   		             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
+		              appointmentId = dataRecord.id;
+   		        	window.location.href = "/kkesh/secureforward/MAIN_DETAILS/"+signInResponseDTO2.emailAddress+"/"+appointmentId;
    		         }
    		         }
    		        ]
@@ -340,13 +346,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	        cache: false,
     	        timeout: 600000,
     	        success: function (data,response) {
-    	        alert("success");
-    	        	
+    	        	Swal.fire("لقد تم تحويل الإستشارة بنجاح ");
    			  },
     	        error: function (e) {
     	        	console.log()
     	        }
     	    });
+    	     
 	   		 });
  	   
  	   
@@ -389,7 +395,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	        timeout: 600000,
     	        success: function (data,response) {
     	        	debugger;
-    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+signInResponseDTO2.emailAddress;
+    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+signInResponseDTO2.emailAddress+"/null";
     	        	//Swal.fire('تم تقديم طلبك. يرجى الانتظار رد الطبيب ')
    			  },
     	        error: function (e) {

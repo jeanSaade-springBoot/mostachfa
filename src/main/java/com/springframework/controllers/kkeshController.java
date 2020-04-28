@@ -269,8 +269,10 @@ public class kkeshController{
 	 *Begin redirection section
 	 */
 	
-	@RequestMapping( value =  "/secureforward/{pageEnum}/{emailAddress}")
-    public ModelAndView mainPage(ModelMap model,@PathVariable(name = "pageEnum") String pageEnum,@PathVariable(name = "emailAddress") String emailAddress)
+	@RequestMapping( value =  "/secureforward/{pageEnum}/{emailAddress}/{appointmentDetailsId}")
+    public ModelAndView mainPage(ModelMap model,@PathVariable(name = "pageEnum") String pageEnum,
+									    		@PathVariable(name = "emailAddress") String emailAddress,
+									    		@PathVariable(name = "appointmentDetailsId") String appointmentDetailsId)
     {
 		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
 		String redirectUrl = redirectEnum.label;
@@ -278,6 +280,7 @@ public class kkeshController{
 		{   Gson gson = new Gson();
 			SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
 			model.addAttribute("signInResponseDTO", gson.toJson(signInResponseDTO));
+			model.addAttribute("appointmentDetailsId", gson.toJson(appointmentDetailsId));
 		}
     	return new ModelAndView(redirectUrl, model);
     }

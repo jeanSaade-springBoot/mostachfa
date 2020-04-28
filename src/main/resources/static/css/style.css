@@ -9,6 +9,9 @@
     border: 1px solid #EED3D7;
     padding: 1rem;
 }
+p {
+    font-family: 'Tajawal'!important;
+}
 a.back {
     float: left!important;
     text-align: left!important;

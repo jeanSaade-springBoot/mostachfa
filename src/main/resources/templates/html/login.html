@@ -169,7 +169,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						 </div>
 						 <div class="col-xl-12" style="margin-top: 1%;">
                             <p class="message font_arabic">ليس لديك حساب؟<a href="#SignUp-form" class="popup-with-form font_arabic open-signup-popup" style="color: #007bff;    margin-right: 1%;">إنشاء حساب جديد</a>
-                            <a href="/kkesh/secureforward/LOGIN/null" class="back" style="color: #007bff;">العودة</a></p>
+                            <a href="/kkesh/secureforward/LOGIN/null/null" class="back" style="color: #007bff;">العودة</a></p>
                         </div>
                          <div class="col-xl-12"  style="margin-top: 1%;">
 						   <div id="error-signin" class="error-signin font_arabic" style="display:none;">البريد الإلكتروني أو كلمة السر خاطئة</div>
@@ -511,10 +511,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	        timeout: 600000,
     	        success: function (data,response) {
     	        	signInResponseDTO     = data;
-    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+data.emailAddress;
+    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+data.emailAddress+"/null";
    			  },
     	        error: function (e) {
-    	        	window.location.href = "/kkesh/secureforward/LOGIN/error";
+    	        	window.location.href = "/kkesh/secureforward/LOGIN/error/null";
     	        }
     	    });
     	    
@@ -557,7 +557,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	    	        success: function (data) {
 	    	        	debugger;
 	    	        	patientReqDTO     = data;
-	    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+data.emailAddress;
+	    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+data.emailAddress+"/null";
 	   },
 	    	        error: function (e) {
 	    	        	debugger;
