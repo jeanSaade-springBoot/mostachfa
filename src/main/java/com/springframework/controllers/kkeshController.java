@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,7 @@ import com.springframework.enums.ResponseCodeEnum;
 import static org.apache.commons.lang.StringUtils.isBlank;
 import com.springframework.utils.UserUtils;
 
+import com.google.gson.Gson;
 @RestController
 @RequestMapping(value = "kkesh")
 public class kkeshController{
@@ -190,7 +192,7 @@ public class kkeshController{
 	 *Begin Appointment section
 	 */
 	
-	@PostMapping(value = "saveappointment", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "saveappointment", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Appointment>  saveAppointment(@RequestBody AppointmentReqDTO appointmentReqDTO){
         return new ResponseEntity<>(this.appointmentService.saveAppointment(appointmentReqDTO), HttpStatus.OK);
     }
@@ -272,9 +274,9 @@ public class kkeshController{
 		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
 		String redirectUrl = redirectEnum.label;
 		if(!isBlank(emailAddress))
-		{
+		{   Gson gson = new Gson();
 			SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
-			model.addAttribute("signInResponseDTO", signInResponseDTO);
+			model.addAttribute("signInResponseDTO", gson.toJson(signInResponseDTO));
 		}
     	return new ModelAndView(redirectUrl, model);
     }
