@@ -42,7 +42,7 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                  <li><a class="popup-with-form font_arabic" href="#SignIn-form">تسجيل خروج</a></li>
+                                  <li><a class="font_arabic"  href="/kkesh/secureforward?pageEnum=LOGIN&emailAddress=">تسجيل خروج</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -181,7 +181,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script>
     var signInResponseDTO2 ='';
     $(document).ready(function () {
-	    var data = generatedata(200);
+    	
 	    debugger;
 	     signInResponseDTO2 = JSON.parse("[[${signInResponseDTO}]]".replace(/&quot;/g,'"'));
 	     if (signInResponseDTO2.isPatient)
@@ -189,77 +189,91 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	      else if(signInResponseDTO2.isAdmin)
 	        { $('#add-doctor').show(); 
 	        }
-	     
-	    var source =
-	    {
-	        localdata: data,
-	        datatype: "array",
-	        datafields:
-	        [
-	            { name: 'firstname', type: 'string' },
-	            { name: 'lastname', type: 'string' },
-	            { name: 'productname', type: 'string' },
-	            { name: 'quantity', type: 'number' },
-	            { name: 'price', type: 'number' }
-	        ],
-	        updaterow: function (rowid, rowdata, commit) {
-	            // synchronize with the server - send update command
-	            // call commit with parameter true if the synchronization with the server is successful 
-	            // and with parameter false if the synchronization failder.
-	            commit(true);
-	        }
-	    };
-	    var dataAdapter = new $.jqx.dataAdapter(source);
-	    // initialize jqxGrid
-	    $("#grid").jqxGrid(
-	    {
-	        width: '100%',
-	        height:'60%',
-	        source: dataAdapter,
-	        selectionmode: 'none',
-	        pageable: true,
-	        rtl:true,
-	        columns: [
-	          { text: 'Patient Name', datafield: 'firstname', width: 200 },
-	          { text: 'description', datafield: 'productname' },
-	          { text: 'creation date', datafield: 'quantity', width: 90, cellsalign: 'right' },
-	          { text: 'status', datafield: 'price', width: 90, cellsalign: 'right', cellsformat: 'c2' },
-		      { text: '', datafield: 'Assign',width: 88, columntype: 'button', cellsrenderer: function () {
-		             return "Assign,fa fa-user,assign-button,88%";
-		          }, buttonclick: function (row) {
-		             // open the popup window when the user clicks a button.
-		        	     editrow = row;
-			             var offset = $("#grid").offset();
-			             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 80, y: parseInt(offset.top) - 20 } });
-			
-			             // get the clicked row's data and initialize the input fields.
-			             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
-			          
-			             // show the popup window.
-			             $("#popupWindow").jqxWindow('open');
-		         }
-		         },
-	          { text: '', datafield: 'View',width: 80, columntype: 'button', cellsrenderer: function () {
-	             return "View,fa fa-eye,view-button,80%";
-	          }, buttonclick: function (row) {
-	        	  debugger;
-	             // open the popup window when the user clicks a button.
-	             editrow = row;
-	             var offset = $("#grid").offset();
-	             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) } });
-	
-	             // get the clicked row's data and initialize the input fields.
-	             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
-	             $("#firstName").val(dataRecord.firstname);
-	             // show the popup window.
-	             $("#popupWindow").jqxWindow('open');
-	         }
-	         }
-	        ]
-	    });
-	    if (signInResponseDTO2.isPatient)
-	     {$("#grid").jqxGrid('hidecolumn', 'Assign');}
-	   
+	     var settings = {
+   			  "url": "/kkesh/getappointmentlstbyuser/"+signInResponseDTO2.emailAddress,
+   			  "method": "GET",
+   			  "timeout": 0,
+   			};
+
+   			$.ajax(settings).done(function (response) {
+   				console.log(response)
+   				data=response;
+   			  var source =
+   		    {
+   		        localdata: data,
+   		        datatype: "array",
+   		        datafields:
+   		        [
+   		            { name: 'firstname', type: 'string' },
+   		            { name: 'description', type: 'string' },
+   		            { name: 'productname', type: 'string' },
+   		            { name: 'creationDate', type: 'string' },
+   		            { name: 'status', type: 'string' },
+   		            { name: 'id', type: 'string' },
+   		            { name: 'patientId', type: 'string' },
+   		        ],
+   		        updaterow: function (rowid, rowdata, commit) {
+   		            // synchronize with the server - send update command
+   		            // call commit with parameter true if the synchronization with the server is successful 
+   		            // and with parameter false if the synchronization failder.
+   		            commit(true);
+   		        }
+   		    };
+   		    var dataAdapter = new $.jqx.dataAdapter(source);
+   		    // initialize jqxGrid
+   		    $("#grid").jqxGrid(
+   		    {
+   		        width: '100%',
+   		        height:'60%',
+   		        source: dataAdapter,
+   		        selectionmode: 'none',
+   		        pageable: true,
+   		        rtl:true,
+   		        columns: [
+   		          { text: 'Patient Name', datafield: 'firstname', width: 200 },
+   		          { text: 'description', datafield: 'description' },
+   		          { text: 'creation date', datafield: 'creationDate', width: 200 },
+   		          { text: 'status', datafield: 'status', width: 90, cellsalign: 'right' },
+   			      { text: '', datafield: 'Assign',width: 88, columntype: 'button', cellsrenderer: function () {
+   			             return "Assign,fa fa-user,assign-button,88%";
+   			          }, buttonclick: function (row) {
+   			             // open the popup window when the user clicks a button.
+   			        	     editrow = row;
+   				             var offset = $("#grid").offset();
+   				             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 80, y: parseInt(offset.top) - 20 } });
+   				
+   				             // get the clicked row's data and initialize the input fields.
+   				             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
+   				          
+   				             // show the popup window.
+   				             $("#popupWindow").jqxWindow('open');
+   			         }
+   			         },
+   		          { text: '', datafield: 'View',width: 80, columntype: 'button', cellsrenderer: function () {
+   		             return "View,fa fa-eye,view-button,80%";
+   		          }, buttonclick: function (row) {
+   		        	  debugger;
+   		             // open the popup window when the user clicks a button.
+   		             editrow = row;
+   		             var offset = $("#grid").offset();
+   		             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) } });
+   		
+   		             // get the clicked row's data and initialize the input fields.
+   		             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
+   		             $("#firstName").val(dataRecord.firstname);
+   		             // show the popup window.
+   		             $("#popupWindow").jqxWindow('open');
+   		         }
+   		         }
+   		        ]
+   		    });
+	   		 if (signInResponseDTO2.isPatient)
+		     {$("#grid").jqxGrid('hidecolumn', 'Assign');}
+		   
+   			});
+   	
+	  
+	    
 	    // initialize the popup window and buttons.
         $("#popupWindow").jqxWindow({
             width: 1250, height:'70%', rtl: true,resizable: false,  isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01           
@@ -321,7 +335,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	 	appointmentReqDTO["description"] = $("#description").val();
     	 	appointmentReqDTO["patientId"] = signInResponseDTO2.id;
     	     $.ajax({
-    	        type: "POST",
+    	        type: "PUT",
     	        contentType: "application/json",
     	        url: "/kkesh/saveappointment",
     	        data: JSON.stringify(appointmentReqDTO),
@@ -330,11 +344,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	        timeout: 600000,
     	        success: function (data,response) {
     	        	debugger;
-    	        	signInResponseDTO     = data;
     	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+signInResponseDTO2.emailAddress;
+    	        	//Swal.fire('تم تقديم طلبك. يرجى الانتظار رد الطبيب ')
    			  },
     	        error: function (e) {
     	        	debugger;
+    	        	alert(e)
     	        	console.log(e);
     	        }
     	    });
