@@ -84,7 +84,8 @@
     <!-- header-end -->
     
 			<!-- Page Content -->
-			<div class="content" >
+			<div id="loading"></div>
+			<div class="content" id="content" style="display:none;">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xl-12">
@@ -608,7 +609,9 @@
 	   			   $("#apointment-description").html(response.description);
 	   			   $("#appointment_id").html(response.id);
 	   			   $("#appointment_creationDate").html(response.creationDate);
-	   			 
+	   		   	   $('#content').show();
+ 				   $('#loading').hide();
+     			
 	   			});
 	     
         $('#jqxtabs').jqxTabs({ width: '100%', height: '500',rtl:true,
@@ -634,7 +637,8 @@
      			};
 
      			$.ajax(settings).done(function (response) {
-     				  doctordata = response
+     				
+     				  doctordata = response;
      				  var doctorSource =
      		   		    {
      		   		        localdata: doctordata,
