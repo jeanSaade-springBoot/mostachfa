@@ -325,7 +325,7 @@
 										</div>
 							            </div>
 							        </div>
-							        <div style="direction:rtl;">
+							        <div style="direction:rtl;display:none;" id="chating-body" >
 									<div class="chat-header">
 										<a id="back_user_list" href="javascript:void(0)" class="back-user-list">
 											<i class="material-icons">chevron_left</i>
@@ -574,6 +574,7 @@
 	       $('#for-patient').show(); 
 	       $('#chat-left').show();
 	       $('#chating').show();
+	       $('#chating-body').show();
 	     }
 	      else if(signInResponseDTO2.isAdmin)
 	        {   $('#add-doctor').show(); 
@@ -592,6 +593,7 @@
 		        $('#for-doctor').show(); 
 		        $('#chat-left').show(); 
 		        $('#chating').show();
+		        $('#chating-body').show();
 	        }
 	
 	     var settings = {
