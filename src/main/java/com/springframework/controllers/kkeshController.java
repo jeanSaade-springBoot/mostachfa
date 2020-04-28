@@ -128,7 +128,7 @@ public class kkeshController{
     public  ResponseEntity<Optional<Patient>>  findPatientByEmail(@RequestParam(name = "emailAddress") String emailAddress){
     	 return new ResponseEntity<>(patientService.findPatientByEmail(emailAddress), HttpStatus.OK);
     }
-	
+	 
 	@GetMapping(value = "finddoctorbyemail", produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<Optional<Doctor>>  findDoctortByEmail(@RequestParam(name = "emailAddress") String emailAddress){
     	 return new ResponseEntity<>(doctorService.findDoctorByEmail(emailAddress), HttpStatus.OK);
