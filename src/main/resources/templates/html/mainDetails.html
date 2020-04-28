@@ -91,7 +91,7 @@
 							<div class="chat-window">
 							
 								<!-- Chat Left -->
-								<div class="chat-cont-left">
+								<div class="chat-cont-left" id="chat-left" style="display:none;">
 									<div class="chat-header">
 										<span class="font_arabic">لائحة الإستشارات</span>
 									</div>
@@ -274,7 +274,7 @@
 									<div id='jqxtabs'>
 							        <ul style='margin-left: 20px;' class="font_arabic">
 							            <li>تفاصيل الإستشارة</li>
-							            <li>دردشة</li>
+							            <li id="chating" style="display:none;">دردشة</li>
 							        </ul>
 							        <div style="direction:rtl;">
 							          <div class="profile-container font_arabic">
@@ -572,12 +572,17 @@
 	     if (signInResponseDTO2.isPatient)
 	     { $('#add-appointment').show();
 	       $('#for-patient').show(); 
+	       $('#chat-left').show();
+	       $('#chating').show();
 	     }
 	      else if(signInResponseDTO2.isAdmin)
 	        {   $('#add-doctor').show(); 
 		        $('#closeAppointment').show(); 
 		        $('#acceptAppointment').show(); 
 		        $('#assignDoctor').show(); 
+		        $('.chat-cont-right').css('width','100%');
+		        $('.chat-cont-right').css('max-width','100%');
+		        $('.chat-cont-right').css('flex','0 0 100%');
 	        }
 	      else if(signInResponseDTO2.isDoctor)
 	        {   $('#closeAppointment').show(); 
@@ -585,6 +590,8 @@
 		        $('#assignDoctor').show(); 
 		        $('#returnAppointmentToAdmin').show(); 
 		        $('#for-doctor').show(); 
+		        $('#chat-left').show(); 
+		        $('#chating').show();
 	        }
 	
 	     var settings = {
