@@ -575,9 +575,10 @@ button.jqx-button, input[type=button].jqx-button, input[type=submit].jqx-button 
     overflow: hidden;
     text-overflow: ellipsis;
     padding-bottom: 2px;
-   text-align: right;
+    direction: rtl;
+    font-family: 'Tajawal';
+    text-align: right;
     margin-right: 10px;
-    margin-left: 4px;
 }
 
 .jqx-grid-cell-middle-align {
