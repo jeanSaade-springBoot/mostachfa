@@ -44,9 +44,9 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
 	}
 	
-	public void updateAppointmentStatus(String appointmentId, int statusId) 
+	public void updateAppointmentStatus(String appointmentId, String doctorId, int statusId) 
 	{
-        appointmentRepository.updateAppointmentStatus(appointmentId,statusId);
+        appointmentRepository.updateAppointmentStatus(appointmentId,doctorId,statusId);
 	}
 	
 	public List<Appointment> getAppointmentAdminList() 

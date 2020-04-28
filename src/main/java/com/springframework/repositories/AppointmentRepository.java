@@ -26,8 +26,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long>
 	
 	@Transactional
 	@Modifying
-	@Query(value = "update Appointment set status= :statusId where id =:appointmentId",nativeQuery = true)
-	void updateAppointmentStatus(@Param("appointmentId") String appointmentId,@Param("statusId") int statusId);
+	@Query(value = "update Appointment set status= :statusId ,  doctor_id= :doctorId where id =:appointmentId",nativeQuery = true)
+	void updateAppointmentStatus(@Param("appointmentId") String appointmentId,@Param("doctorId") String doctorId,@Param("statusId") int statusId);
 	
 	@Query(value = "select * from Appointment where patient_id =:patientId",nativeQuery = true)
 	List<Appointment> findByPatientIdAndStatus(@Param("patientId") String patientId);
