@@ -42,7 +42,7 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                  <li><a class="popup-with-form font_arabic" href="#SignIn-form">تسجيل خروج</a></li>
+                                   <li><a class="font_arabic"  href="/kkesh/secureforward/LOGIN/null">تسجيل خروج</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -61,10 +61,15 @@
                         </div>
                         <div class="col-xl-6 col-lg-7">
                         </div>
-                        <div class="col-xl-4 col-lg-4 d-none d-lg-block">
-                            <div class="Appointment">
+                         <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                            <div class="Appointment"  id="add-appointment" style="display: none;">
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                    <a id="open-appointment-popup" class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                </div>
+                            </div>
+                            <div class="Appointment" id="add-doctor" style="display: none;">
+                                <div class="book_btn d-none d-lg-block">
+                                    <a class="popup-with-form font_arabic" href="#">إضافة طبيب</a>
                                 </div>
                             </div>
                         </div>
@@ -529,17 +534,15 @@
     <script  src="/js/jqwidgets/jqxcore.js"></script>
     <script  src="/js/jqwidgets/jqxtabs.js"></script>
     <script>
+    var signInResponseDTO2 ='';
     $(document).ready(function () {
-    	var signInResponseDTO2 = "[[${signInResponseDTO}]]";
-        function initialize() {
-            var mapCanvas = document.getElementById('map-canvas');
-            var mapOptions = {
-                center: new google.maps.LatLng(29.979234, 31.134202),
-                zoom: 17,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            var map = new google.maps.Map(mapCanvas, mapOptions)
-        }
+    	signInResponseDTO2 = JSON.parse("[[${signInResponseDTO}]]".replace(/&quot;/g,'"'));
+	     if (signInResponseDTO2.isPatient)
+	     { $('#add-appointment').show();}
+	      else if(signInResponseDTO2.isAdmin)
+	        { $('#add-doctor').show(); 
+	        }
+	
         $('#jqxtabs').jqxTabs({ width: '100%', height: '100%',rtl:true,
             initTabContent: function (tab) {
                 

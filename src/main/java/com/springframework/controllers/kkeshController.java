@@ -81,12 +81,13 @@ public class kkeshController{
     public  ResponseEntity<Patient>  registerpatient(@RequestBody PatientReqDTO patientReqDTO){
 		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(patientReqDTO.getEmailAddress());
 		if(signInResponseDTO != null)
-			 return new ResponseEntity<>(this.patientService.saveUser(patientReqDTO), HttpStatus.FOUND);
-        return new ResponseEntity<>(this.patientService.saveUser(patientReqDTO), HttpStatus.OK);
+			 return new ResponseEntity<>(null, HttpStatus.FOUND);
+     
+		return new ResponseEntity<>(this.patientService.saveUser(patientReqDTO), HttpStatus.OK);
     }
 	
-	@GetMapping(value = "checkifuserexists", produces = MediaType.APPLICATION_JSON_VALUE)
-    public  ResponseEntity<SignInResponseDTO>  checkIfUserExists(@RequestParam(name = "emailAddress") String emailAddress){
+	@GetMapping(value = "checkifuserexists/{emailAddress}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<SignInResponseDTO>  checkIfUserExists(@PathVariable(name = "emailAddress") String emailAddress){
 		SignInResponseDTO signInResponseDTO = getUserByEmailFromAllEntity(emailAddress);
 		if(signInResponseDTO != null)
 		   return new ResponseEntity<>(signInResponseDTO, HttpStatus.FOUND);
@@ -268,8 +269,8 @@ public class kkeshController{
 	 *Begin redirection section
 	 */
 	
-	@RequestMapping( value =  "/secureforward")
-    public ModelAndView mainPage(ModelMap model,@RequestParam(name = "pageEnum") String pageEnum,@RequestParam(name = "emailAddress") String emailAddress)
+	@RequestMapping( value =  "/secureforward/{pageEnum}/{emailAddress}")
+    public ModelAndView mainPage(ModelMap model,@PathVariable(name = "pageEnum") String pageEnum,@PathVariable(name = "emailAddress") String emailAddress)
     {
 		RedirectPagesEnum redirectEnum = RedirectPagesEnum.valueOf(pageEnum);
 		String redirectUrl = redirectEnum.label;

@@ -42,7 +42,7 @@
                         <div class="col-xl-6 col-md-6">
                             <div class="short_contact_list">
                                 <ul>
-                                  <li><a class="font_arabic"  href="/kkesh/secureforward?pageEnum=LOGIN&emailAddress=">تسجيل خروج</a></li>
+                                  <li><a class="font_arabic"  href="/kkesh/secureforward/LOGIN/null">تسجيل خروج</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="Appointment" id="add-doctor" style="display: none;">
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form font_arabic" href="#appointment-form">تقديم استشارة طبية</a>
+                                    <a class="popup-with-form font_arabic" href="#">إضافة طبيب</a>
                                 </div>
                             </div>
                         </div>
@@ -180,6 +180,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
      <script  src="/js/jqwidgets/jqxwindow.js"></script>
     <script>
     var signInResponseDTO2 ='';
+    var appointmentId ='';
     $(document).ready(function () {
     	
 	    debugger;
@@ -230,21 +231,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
    		        pageable: true,
    		        rtl:true,
    		        columns: [
-   		          { text: 'Patient Name', datafield: 'firstname', width: 200 },
-   		          { text: 'description', datafield: 'description' },
-   		          { text: 'creation date', datafield: 'creationDate', width: 200 },
-   		          { text: 'status', datafield: 'status', width: 90, cellsalign: 'right' },
+   		          { text: 'وصف', datafield: 'description' },
+   		          { text: 'تاريخ الإنشاء', datafield: 'creationDate', width: 200 },
+   		          { text: 'الحالة', datafield: 'status', width: 200, cellsalign: 'right' },
    			      { text: '', datafield: 'Assign',width: 88, columntype: 'button', cellsrenderer: function () {
    			             return "Assign,fa fa-user,assign-button,88%";
    			          }, buttonclick: function (row) {
    			             // open the popup window when the user clicks a button.
+   			             debugger;
    			        	     editrow = row;
    				             var offset = $("#grid").offset();
    				             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 80, y: parseInt(offset.top) - 20 } });
    				
    				             // get the clicked row's data and initialize the input fields.
    				             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
-   				          
+   				             appointmentId = dataRecord.id;
    				             // show the popup window.
    				             $("#popupWindow").jqxWindow('open');
    			         }
@@ -252,17 +253,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
    		          { text: '', datafield: 'View',width: 80, columntype: 'button', cellsrenderer: function () {
    		             return "View,fa fa-eye,view-button,80%";
    		          }, buttonclick: function (row) {
-   		        	  debugger;
-   		             // open the popup window when the user clicks a button.
-   		             editrow = row;
-   		             var offset = $("#grid").offset();
-   		             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) } });
-   		
-   		             // get the clicked row's data and initialize the input fields.
-   		             var dataRecord = $("#grid").jqxGrid('getrowdata', editrow);
-   		             $("#firstName").val(dataRecord.firstname);
-   		             // show the popup window.
-   		             $("#popupWindow").jqxWindow('open');
+   		        	window.location.href = "/kkesh/secureforward/MAIN_DETAILS/"+signInResponseDTO2.emailAddress;
    		         }
    		         }
    		        ]
@@ -276,32 +267,86 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	    
 	    // initialize the popup window and buttons.
         $("#popupWindow").jqxWindow({
-            width: 1250, height:'70%', rtl: true,resizable: false,  isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01           
+            width: 450, height:'70%', rtl: true,resizable: false,  isModal: true, autoOpen: false, cancelButton: $("#Cancel"), modalOpacity: 0.01           
         });
 
         $("#popupWindow").on('open', function () {
+        	var settings = {
+         			  "url": "/kkesh/getdoctors?name=",
+         			  "method": "GET",
+         			  "timeout": 0,
+         			};
 
-	    $("#doctor-grid").jqxGrid(
-           		    {
-           		        width: '100%',
-           		        height:'100%',
-           		        source: dataAdapter,
-           		        pageable: true,
-           		        rtl:true,
-           		        columns: [
-           		          { text: 'Patient Name', datafield: 'firstname', width: 200 },
-           		          { text: 'description', datafield: 'productname' },
-           		          { text: 'creation date', datafield: 'quantity', width: 90, cellsalign: 'right' },
-           		          { text: 'status', datafield: 'price', width: 90, cellsalign: 'right', cellsformat: 'c2' }
-           		        ]
-           		    });
-	      $("#doctor-grid").jqxGrid('clearselection');
+         			$.ajax(settings).done(function (response) {
+         				  doctordata = response
+         				  var doctorSource =
+         		   		    {
+         		   		        localdata: doctordata,
+         		   		        datatype: "array",
+         		   		        datafields:
+         		   		        [
+         		   		            { name: 'fname', type: 'string' },
+         		   		            { name: 'emailAddress', type: 'string' },
+         		   		            { name: 'lname', type: 'string' },
+         		   		            { name: 'creationDate', type: 'string' },
+         		   		            { name: 'status', type: 'string' },
+         		   		            { name: 'id', type: 'string' },
+         		   		            { name: 'patientId', type: 'string' },
+         		   		        ],
+         		   		        updaterow: function (rowid, rowdata, commit) {
+         		   		            // synchronize with the server - send update command
+         		   		            // call commit with parameter true if the synchronization with the server is successful 
+         		   		            // and with parameter false if the synchronization failder.
+         		   		            commit(true);
+         		   		        }
+         		   		    };
+         		   		    var doctorDataAdapter = new $.jqx.dataAdapter(doctorSource);
+         		   		    
+					        $("#doctor-grid").jqxGrid(
+				           		    {
+				           		        width: '100%',
+				           		        height:'100%',
+				           		        source: doctorDataAdapter,
+				           		        pageable: true,
+				           		        rtl:true,
+				           		        columns: [
+				           		          { text: 'اسم الطبيب', datafield: 'id', displayfield: 'fname', width: 200 },
+				           				  { text: 'عناوين البريد الإلكتروني', datafield: 'emailAddress' }
+				           		        ]
+				           		    });
+					      $("#doctor-grid").jqxGrid('clearselection');
+				        });
         });
         
  	   $("#doctor-grid").bind('rowselect', function (event) {
- 		    var row = event.args.rowindex;
-	        console.log("row :" + event.args.row)
+ 		    var id = event.args.row.id;
+ 		    
 	        $('#popupWindow').jqxWindow('close');
+	        
+	        debugger;
+		 	 var appointmentTrackReqDTO = {}
+		 	 appointmentTrackReqDTO["assignedBy"] = signInResponseDTO2.id;
+		 	 appointmentTrackReqDTO["doctorId"]   = id;
+		     appointmentTrackReqDTO["appointmentId"] = appointmentId;
+		 	 appointmentTrackReqDTO["isCurrent"]   = 'true';
+		 	 appointmentTrackReqDTO["memo"] = '';
+		 	 
+    	     $.ajax({
+    	        type: "POST",
+    	        contentType: "application/json",
+    	        url: "/kkesh/assignappointment",
+    	        data: JSON.stringify(appointmentTrackReqDTO),
+    	        dataType: 'json',
+    	        cache: false,
+    	        timeout: 600000,
+    	        success: function (data,response) {
+    	        alert("success");
+    	        	
+   			  },
+    	        error: function (e) {
+    	        	console.log()
+    	        }
+    	    });
 	   		 });
  	   
  	   
@@ -344,7 +389,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	        timeout: 600000,
     	        success: function (data,response) {
     	        	debugger;
-    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+signInResponseDTO2.emailAddress;
+    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+signInResponseDTO2.emailAddress;
     	        	//Swal.fire('تم تقديم طلبك. يرجى الانتظار رد الطبيب ')
    			  },
     	        error: function (e) {

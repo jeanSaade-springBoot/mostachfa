@@ -169,7 +169,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						 </div>
 						 <div class="col-xl-12" style="margin-top: 1%;">
                             <p class="message font_arabic">ليس لديك حساب؟<a href="#SignUp-form" class="popup-with-form font_arabic open-signup-popup" style="color: #007bff;    margin-right: 1%;">إنشاء حساب جديد</a>
-                            <a href="/kkesh/secureforward?pageEnum=LOGIN&emailAddress=" class="back" style="color: #007bff;">العودة</a></p>
+                            <a href="/kkesh/secureforward/LOGIN/null" class="back" style="color: #007bff;">العودة</a></p>
                         </div>
                          <div class="col-xl-12"  style="margin-top: 1%;">
 						   <div id="error-signin" class="error-signin font_arabic" style="display:none;">البريد الإلكتروني أو كلمة السر خاطئة</div>
@@ -433,17 +433,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="/js/main.js"></script>
     
     <script>
+    debugger;
   	var url_string = window.location.href; 
-   	var url = new URL(url_string);
-   	var url_emailAddress = url.searchParams.get("emailAddress");
-   	
+  	
     $(document).ready(function () {
  
-   	if(url_emailAddress=="error")
+   	if(url_string.includes("error"))
      {
-
-     	 url.searchParams.set('emailAddress','')
-   		jQuery.magnificPopup.open({
+    	jQuery.magnificPopup.open({
     		  items: {src: '#SignIn-form'},type: 'inline'}, 0);
      	 $('#error-signin').show(); 
      }	
@@ -514,10 +511,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     	        timeout: 600000,
     	        success: function (data,response) {
     	        	signInResponseDTO     = data;
-    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+data.emailAddress;
+    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+data.emailAddress;
    			  },
     	        error: function (e) {
-    	        	window.location.href = "/kkesh/secureforward?pageEnum=LOGIN&emailAddress=error";
+    	        	window.location.href = "/kkesh/secureforward/LOGIN/error";
     	        }
     	    });
     	    
@@ -547,26 +544,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         	  patientReqDTO["ikamaNbr"] = '';
 	    	  
 	    	  debugger;
-	    	    $.ajax({
+	    	  
+	       	  $.ajax({
 	    	        type: "POST",
 	    	        contentType: "application/json",
 	    	        url: "/kkesh/registerpatient",
 	    	        data: JSON.stringify(patientReqDTO),
 	    	        dataType: 'json',
+	    	        async:false,
 	    	        cache: false,
 	    	        timeout: 600000,
 	    	        success: function (data) {
 	    	        	debugger;
 	    	        	patientReqDTO     = data;
-	    	        	window.location.href = "/kkesh/secureforward?pageEnum=APPOINTMENT_MAIN_LIST&emailAddress="+data.emailAddress;
-	
-	    	        },
+	    	        	window.location.href = "/kkesh/secureforward/APPOINTMENT_MAIN_LIST/"+data.emailAddress;
+	   },
 	    	        error: function (e) {
 	    	        	debugger;
 						  console.log("ERROR : ", e);
 	
 	    	        }
 	    	    });
+	    	  
           }
       });
 	</script>
